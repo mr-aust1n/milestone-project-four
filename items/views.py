@@ -48,3 +48,15 @@ def edit_item(request, item_id):
         form = ItemForm(instance=item)
 
     return render(request, "items/edit_item.html", {"form": form, "item": item})
+
+
+@login_required
+def delete_item(request, item_id):
+    item = get_object_or_404(Item, pk=item_id, seller=request.user)
+
+    if request.method == "POST":
+        item.delete()
+        messages.success(request, "Item deleted successfully.")
+        return redirect("home")
+
+    return render(request, "items/delete_item.html", {"item": item})
