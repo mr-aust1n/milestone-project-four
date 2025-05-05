@@ -1,3 +1,5 @@
+# reluvd/settings.py
+
 """
 Django settings for reluvd project.
 
