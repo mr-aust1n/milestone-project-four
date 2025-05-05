@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main role="main" aria-labelledby="activation-failed-title">
+    <h2 id="activation-failed-title">Activation Failed</h2>
+
+    <p>Sorry, this activation link is invalid or has already been used.</p>
+    <p>Please <a href="{% url 'signup' %}" aria-label="Try signing up again">try signing up again</a> or contact support
+        if the issue persists.</p>
+</main>
+{% endblock %}
