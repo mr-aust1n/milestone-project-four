@@ -1,7 +1,5 @@
-# accounts / views.py
 from django.conf import settings
 from django.contrib import messages
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.sites.shortcuts import get_current_site
@@ -11,13 +9,15 @@ from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 
+from .forms import CustomUserCreationForm
+
 
 def register(request):
     if request.method == "POST":
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
-            user.is_active = False  # deactivate until confirmed
+            user.is_active = False  # deactivate until email confirmed
             user.save()
 
             current_site = get_current_site(request)
@@ -45,7 +45,7 @@ def register(request):
             )
             return redirect("login")
     else:
-        form = UserCreationForm()
+        form = CustomUserCreationForm()
 
     return render(request, "accounts/signup.html", {"form": form})
 
