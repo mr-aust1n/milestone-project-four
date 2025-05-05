@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main role="main" aria-labelledby="edit-item-title">
+    <h2 id="edit-item-title">Edit: {{ item.title }}</h2>
+
+    <form method="POST" enctype="multipart/form-data" aria-label="Edit item form">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit" aria-label="Save changes to {{ item.title }}">Save Changes</button>
+        <a href="{% url 'item_detail' item.id %}" role="link" aria-label="Cancel and go back to item page">Cancel</a>
+    </form>
+</main>
+{% endblock %}

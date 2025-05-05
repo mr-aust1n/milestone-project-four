@@ -29,3 +29,22 @@ def add_item(request):
 def item_detail(request, item_id):
     item = get_object_or_404(Item, pk=item_id)
     return render(request, "items/item_detail.html", {"item": item})
+
+
+from django.contrib import messages
+
+
+@login_required
+def edit_item(request, item_id):
+    item = get_object_or_404(Item, pk=item_id, seller=request.user)
+
+    if request.method == "POST":
+        form = ItemForm(request.POST, request.FILES, instance=item)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Item updated successfully.")
+            return redirect("item_detail", item_id=item.id)
+    else:
+        form = ItemForm(instance=item)
+
+    return render(request, "items/edit_item.html", {"form": form, "item": item})
