@@ -3,7 +3,7 @@
 
 # Manual Testing: Item Detail View
 
-This section outlines the manual testing performed for the **Item Detail View** feature of the ReLuvd application.
+This section outlines the manual testing performed for the **Item Detail View**.
 
 ## ✅ Test Cases
 
@@ -18,3 +18,24 @@ This section outlines the manual testing performed for the **Item Detail View** 
 
 ![invalid ID](doc_images/invalidID.png) 
 ![Correct Item ID](doc_images/correctID.png) 
+
+
+# Manual Testing: Edit item
+
+This section outlines the manual testing performed for the **Edit Item**.
+
+## ✅ Test Cases
+
+
+| Test Case                      | Expected Result                                                                 | Status   |
+|-------------------------------|----------------------------------------------------------------------------------|----------|
+| Edit button visible (owner)   | If logged in as seller, Edit button shows on item detail page                   | ✅ Pass  |
+| Edit button hidden (non-owner)| If logged in as different user, Edit button is not shown                        | ✅ Pass  |
+| Edit form pre-filled          | Edit page shows form pre-filled with existing item data                         | ✅ Pass  |
+| Submit valid edits            | Updating title, price, or image updates the item and redirects to detail page   | ✅ Pass  |
+| Submit invalid edits          | Submitting blank required fields returns with error messages                    | ✅ Pass  |
+| Unauthorized edit attempt     | Visiting `/item_id/edit/` as non-owner returns 404                              | ✅ Pass  |
+
+![Editing](doc_images/editTest.png) 
+![Edit Successful](doc_images/EditSuccessful.png) 
+![Invalid Edits](doc_images/InvalidEdits.png) 
