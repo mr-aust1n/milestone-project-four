@@ -17,4 +17,4 @@ This section outlines the manual testing performed for the **Item Detail View** 
 
 
 ![invalid ID](doc_images/invalidID.png) 
-![invalid ID](doc_images/correctItem.png) 
+![Correct Item ID](doc_images/correctItem.png) 
