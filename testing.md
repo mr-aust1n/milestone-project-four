@@ -91,3 +91,13 @@ This section outlines the manual testing performed for the **User Dashboard**.
 ![Edit Links](doc_images/DashboardLoggedin.png)  
 ![Missing Image](doc_images/ImageMissing.png) 
 ![No Items](doc_images/NoItems.png) 
+
+
+# Manual Testing: .Env 
+
+This section outlines the manual testing performed for the **.env**.  This makes sure my app can access the .env files correctly.
+
+## ✅ Test Cases
+
+![Email Test](doc_images/testingEnvEmail.png) 
+![Stripe Test](doc_images/testingEnvStripe.png) 
