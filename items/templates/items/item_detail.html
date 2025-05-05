@@ -7,6 +7,7 @@
 <p><strong>Category:</strong> {{ item.get_category_display }}</p>
 <p><strong>Price:</strong> £{{ item.price }}</p>
 
+
 {% if item.image %}
 <img src="{{ item.image.url }}" alt="{{ item.title }}" width="300">
 {% endif %}
@@ -15,6 +16,11 @@
 
 {% if item.is_sold %}
 <p><em>This item has been sold.</em></p>
+{% endif %}
+
+{% if request.user == item.seller %}
+<a href="{% url 'edit_item' item.id %}">Edit</a> |
+<a href="{% url 'delete_item' item.id %}">Delete</a>
 {% endif %}
 
 <a href="{% url 'home' %}">← Back to listings</a>

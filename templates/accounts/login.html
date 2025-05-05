@@ -1,0 +1,26 @@
+<!-- login.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<main role="main" aria-labelledby="login-heading">
+    <h2 id="login-heading">Login to ReLuvd</h2>
+
+    {% if form.errors %}
+    <p aria-live="polite" style="color:red;">Incorrect username or password. Please try again.</p>
+    {% endif %}
+
+    <form method="POST" aria-label="Login form">
+        {% csrf_token %}
+        <div>
+            <label for="id_username">Username:</label>
+            <input type="text" name="username" id="id_username" required aria-required="true" autocomplete="username">
+        </div>
+        <div>
+            <label for="id_password">Password:</label>
+            <input type="password" name="password" id="id_password" required aria-required="true"
+                autocomplete="current-password">
+        </div>
+        <button type="submit" aria-label="Login to your account">Login</button>
+    </form>
+</main>
+{% endblock %}
