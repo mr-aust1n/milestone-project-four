@@ -1,0 +1,21 @@
+<!-- items/templates/items/item_detail.html -->
+
+{% extends "base.html" %}
+
+{% block content %}
+<h2>{{ item.title }}</h2>
+<p><strong>Category:</strong> {{ item.get_category_display }}</p>
+<p><strong>Price:</strong> £{{ item.price }}</p>
+
+{% if item.image %}
+<img src="{{ item.image.url }}" alt="{{ item.title }}" width="300">
+{% endif %}
+
+<p>{{ item.description }}</p>
+
+{% if item.is_sold %}
+<p><em>This item has been sold.</em></p>
+{% endif %}
+
+<a href="{% url 'home' %}">← Back to listings</a>
+{% endblock %}

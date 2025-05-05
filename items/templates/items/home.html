@@ -2,22 +2,33 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>Latest Items</h2>
-{% if items %}
-<ul>
-    {% for item in items %}
-    <li>
-        <strong>{{ item.title }}</strong><br>
-        £{{ item.price }}<br>
-        {% if item.image %}
-        <img src="{{ item.image.url }}" alt="{{ item.title }}" width="150">
-        {% endif %}
-        <p>{{ item.description|truncatewords:20 }}</p>
-        <hr>
-    </li>
-    {% endfor %}
-</ul>
-{% else %}
-<p>No items available yet.</p>
-{% endif %}
+<main role="main" aria-label="Item listings">
+    <h2>Latest Items</h2>
+
+    {% if items %}
+    <ul class="item-list" aria-live="polite">
+        {% for item in items %}
+        <li>
+            <article aria-label="Item: {{ item.title }}">
+                <a href="{% url 'item_detail' item.id %}" aria-label="View details for {{ item.title }}">
+                    <h3>{{ item.title }}</h3>
+                </a>
+
+                <p><strong>Price:</strong> £{{ item.price }}</p>
+
+                {% if item.image %}
+                <a href="{% url 'item_detail' item.id %}" aria-label="Image of {{ item.title }}">
+                    <img src="{{ item.image.url }}" alt="{{ item.title }}" width="150">
+                </a>
+                {% endif %}
+
+                <p>{{ item.description|truncatewords:20 }}</p>
+            </article>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No items available yet.</p>
+    {% endif %}
+</main>
 {% endblock %}
