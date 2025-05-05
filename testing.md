@@ -86,7 +86,6 @@ This section outlines the manual testing performed for the **User Dashboard**.
 | User with no listings                | Sees message: “You haven’t listed any items yet.”                                  | ✅ Pass  |
 
 
-
 ![Logged out Redirected](doc_images/DashbaordDiverted.png) 
 ![Logged in Redirected](doc_images/DashboardLoggedin.png) 
 ![Edit Links](doc_images/DashboardLoggedin.png)  
