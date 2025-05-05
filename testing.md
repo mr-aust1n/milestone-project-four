@@ -66,3 +66,29 @@ This section outlines the manual testing performed for the **User Registration**
 ![Invalid Email](doc_images/InvalidEmail.png) 
 ![Email Confirmation](doc_images/EmailConfirmation.png) 
 ![Testing the .env data is pulled ok](doc_images/testingEnv.png) 
+
+
+
+
+
+# Manual Testing: User Registration 
+
+This section outlines the manual testing performed for the **User Dashboard**.
+
+## ✅ Test Cases
+
+| Test Case                             | Expected Result                                                                    | Status   |
+|--------------------------------------|-------------------------------------------------------------------------------------|----------|
+| Access dashboard while logged out    | Redirected to login page (due to @login_required)                                  | ✅ Pass  |
+| Access dashboard while logged in     | Shows only items listed by the logged-in user                                      | ✅ Pass  |
+| Dashboard shows Edit/Delete links    | Each item listed includes working "Edit" and "Delete" links                        | ✅ Pass  |
+| Item without image displays correctly| No broken image icon if item has no image                                          | ✅ Pass  |
+| User with no listings                | Sees message: “You haven’t listed any items yet.”                                  | ✅ Pass  |
+
+
+
+![Logged out Redirected](doc_images/DashbaordDiverted.png) 
+![Logged in Redirected](doc_images/DashboardLoggedin.png) 
+![Edit Links](doc_images/DashboardLoggedin.png)  
+![Missing Image](doc_images/ImageMissing.png) 
+![No Items](doc_images/NoItems.png) 
