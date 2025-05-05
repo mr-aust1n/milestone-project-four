@@ -60,3 +60,9 @@ def delete_item(request, item_id):
         return redirect("home")
 
     return render(request, "items/delete_item.html", {"item": item})
+
+
+@login_required
+def dashboard(request):
+    my_items = Item.objects.filter(seller=request.user)
+    return render(request, "items/dashboard.html", {"my_items": my_items})
