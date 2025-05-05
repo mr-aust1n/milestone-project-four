@@ -39,3 +39,30 @@ This section outlines the manual testing performed for the **Edit Item**.
 ![Editing](doc_images/editTest.png) 
 ![Edit Successful](doc_images/EditSuccessful.png) 
 ![Invalid Edits](doc_images/InvalidEdits.png) 
+
+
+
+# Manual Testing: User Registration 
+
+This section outlines the manual testing performed for the **User Registration**.
+
+## ✅ Test Cases
+
+| Test Case                                     | Expected Result                                                                 | Status   |
+|----------------------------------------------|----------------------------------------------------------------------------------|----------|
+| Submit valid signup form                     | Form submits successfully and redirects to login page with success message      | ✅ Pass  |
+| Submit with missing fields                   | Error messages shown (e.g., "This field is required")                           | ✅ Pass  |
+| Submit with mismatched passwords             | Form errors appear for password confirmation                                    | ✅ Pass  |
+| Email is sent after valid registration       | Activation email is sent to the provided email address                          | ✅ Pass  |
+| Click activation link in email               | User account is activated and redirected to login page                          | ✅ Pass  |
+| Try login before activation                  | Login fails with “account inactive” or no access                                | ✅ Pass  |
+| Use invalid activation token                 | Renders `activation_invalid.html` with error message                            | ✅ Pass  |
+| Reuse valid activation link                  | Gracefully handles with “already activated” or success message again            | ✅ Pass  |
+| Email address stored in database             | `User.email` field correctly populated after registration                        | ✅ Pass  |
+
+![Password Required](doc_images/RequiredPassword.png) 
+![User Exists](doc_images/UserExists.png) 
+![Password Requirements](doc_images/PasswordRequirements.png) 
+![Invalid Email](doc_images/InvalidEmail.png) 
+![Email Confirmation](doc_images/EmailConfirmation.png) 
+![Testing the .env data is pulled ok](doc_images/testingEnv.png) 
