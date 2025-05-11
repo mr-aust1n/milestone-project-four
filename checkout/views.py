@@ -1,9 +1,9 @@
-# checkout / views.py
+# checkout/views.py
 
 import stripe
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 
 from items.models import Item
 
@@ -40,3 +40,18 @@ def create_checkout_session(request, item_id):
     )
 
     return redirect(checkout_session.url, code=303)
+
+
+@login_required
+def payment_success(request, item_id):
+    item = get_object_or_404(Item, pk=item_id)
+    item.is_sold = True
+    item.save()
+
+    Order.objects.create(
+        item=item,
+        buyer=request.user,
+        price=item.price,
+    )
+
+    return render(request, "checkout/success.html", {"item": item})
