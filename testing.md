@@ -148,3 +148,22 @@ This section outlines the manual testing performed for the **.env**.  This makes
 | Offer buttons hidden after action         | Accept/Reject buttons disappear after a decision                                 | ✅ Pass  |
 | Only seller of item can respond           | Other users cannot trigger accept/reject (redirect to dashboard)                 | ✅ Pass  |
 | Buyer cannot see other users’ offers      | Offers are not visible to buyers or anonymous users                              | ✅ Pass  |
+
+## ✅ Search
+
+| Test Case                            | Expected Result                                                            | Status   |
+|-------------------------------------|-----------------------------------------------------------------------------|----------|
+| Search input is visible             | Input field appears above the item list                                    | ✅ Pass  |
+| Typing exact match filters items    | Matching item(s) remain visible, others disappear                          | ✅ Pass  |
+| Typing partial match filters items  | Items with matching substring stay visible                                 | ✅ Pass  |
+| Typing non-matching query           | No items are shown                                                         | ✅ Pass  |
+| Backspacing clears filter           | All items are visible again                                                | ✅ Pass  |
+| Search is case-insensitive          | Typing “jeans” matches “Jeans” or “JEANS”                                  | ✅ Pass  |
+| Works on mobile view                | Search input and filtering work responsively                               | ✅ Pass  |
+| Does not break layout               | Item styling remains intact when filtering                                 | ✅ Pass  |
+| JavaScript gracefully degrades      | Entire item list still visible if JS disabled                              | ✅ Pass  |
+
+
+![Search](doc_images/jeans.png) 
+![JS Disabled](doc_images/noJS.png) 
+
