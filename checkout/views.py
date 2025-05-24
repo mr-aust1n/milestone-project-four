@@ -7,6 +7,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 
 from items.models import Item
 
+from .forms import OfferForm
 from .models import Order
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -56,3 +57,31 @@ def payment_success(request, item_id):
     )
 
     return render(request, "checkout/success.html", {"item": item})
+
+
+@login_required
+def make_offer(request, item_id):
+    item = get_object_or_404(Item, pk=item_id)
+
+    if item.is_sold or item.seller == request.user:
+        return redirect("item_detail", item_id=item.id)
+
+    if request.method == "POST":
+        form = OfferForm(request.POST)
+        if form.is_valid():
+            offer_price = form.cleaned_data["offer_price"]
+            note = form.cleaned_data["note"]
+
+            Order.objects.create(
+                item=item,
+                buyer=request.user,
+                price=offer_price,
+                is_offer=True,
+                offer_note=note,
+            )
+
+            return render(request, "checkout/offer_submitted.html", {"item": item})
+    else:
+        form = OfferForm()
+
+    return render(request, "checkout/make_offer.html", {"form": form, "item": item})
