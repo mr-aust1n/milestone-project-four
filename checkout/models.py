@@ -5,6 +5,12 @@ from items.models import Item
 
 
 class Order(models.Model):
+    STATUS_CHOICES = [
+        ("pending", "Pending"),
+        ("accepted", "Accepted"),
+        ("rejected", "Rejected"),
+    ]
+
     item = models.ForeignKey(
         Item, on_delete=models.CASCADE, related_name="checkout_orders"
     )
@@ -13,6 +19,9 @@ class Order(models.Model):
     is_offer = models.BooleanField(default=False)
     offer_note = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(
+        max_length=10, choices=STATUS_CHOICES, default="pending"
+    )  # ✅ new
 
     def __str__(self):
         return f"Order #{self.id} - {self.item.title} by {self.buyer.username}"
