@@ -31,6 +31,14 @@
     </form>
     {% endif %}
 
+
+    {% if user.is_authenticated and not item.is_sold and request.user != item.seller %}
+    <form action="{% url 'make_offer' item.id %}" method="get">
+        <button type="submit" aria-label="Make an offer for {{ item.title }}">Make an Offer</button>
+    </form>
+    {% endif %}
+
+
     <p><a href="{% url 'home' %}">← Back to listings</a></p>
 </main>
 {% endblock %}

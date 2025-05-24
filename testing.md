@@ -1,4 +1,10 @@
 
+# Key 
+
+✅ - PASS
+
+❌ - Fail
+
 
 
 # Manual Testing: Item Detail View
@@ -101,3 +107,27 @@ This section outlines the manual testing performed for the **.env**.  This makes
 
 ![Email Test](doc_images/testingEnvEmail.png) 
 ![Stripe Test](doc_images/testingEnvStripe.png) 
+
+## ✅ Buy Now / Make Offer
+
+
+
+| Test Case                                 | Expected Result                                                               | Status   |
+|------------------------------------------|--------------------------------------------------------------------------------|----------|
+| View item as non-logged-in user          | No "Buy Now" or "Make Offer" buttons shown                                    | ✅ Pass  |
+| View item as seller                      | No "Buy Now" or "Make Offer" buttons shown                                    | ✅ Pass  |
+| View item as other logged-in user        | "Buy Now" and "Make Offer" buttons are visible                                | ✅ Pass  |
+| Submit offer with valid price only       | Offer is submitted and confirmation page appears                              | ✅ Pass  |
+| Submit offer with price and note         | Offer and message are saved and confirmation page appears                     | ✅ Pass  |
+| Submit offer with missing price          | Form error shown for required field                                           | ✅ Pass  |
+| Offer saved in database                  | Offer recorded in `Order` model with `is_offer=True` and linked to item/user  | ✅ Pass  |
+| Offer not allowed on sold item           | Redirects back or shows no option                                             | ✅ Pass  |
+
+
+- None Seller View - Showing Buy Now and Make Offer Offer
+![Buy Now](doc_images/buynow.png) 
+![Make Offer](doc_images/buynow.png) 
+
+- Seller View - Not showing Buy Now or Make Offer 
+![Buy Now](doc_images/noBuyNow.png) 
+![Make Offer](doc_images/noBuyNow.png) 
