@@ -131,3 +131,7 @@ This section outlines the manual testing performed for the **.env**.  This makes
 - Seller View - Not showing Buy Now or Make Offer 
 ![Buy Now](doc_images/noBuyNow.png) 
 ![Make Offer](doc_images/noBuyNow.png) 
+
+- Offer 
+![Offer Sent](doc_images/offerSent.png) 
+![Make Offer](doc_images/noBuyNow.png) 
