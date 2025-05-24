@@ -11,6 +11,7 @@ from .models import Order
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
+
 @login_required
 def create_checkout_session(request, item_id):
     item = get_object_or_404(Item, pk=item_id)
@@ -24,7 +25,7 @@ def create_checkout_session(request, item_id):
             {
                 "price_data": {
                     "currency": "gbp",
-                    "unit_amount": int(item.price * 100),  
+                    "unit_amount": int(item.price * 100),
                     "product_data": {
                         "name": item.title,
                         "description": item.description,

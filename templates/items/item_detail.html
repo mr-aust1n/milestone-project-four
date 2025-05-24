@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main role="main" aria-labelledby="item-title">
+    <h2 id="item-title">{{ item.title }}</h2>
+
+    <p><strong>Category:</strong> {{ item.get_category_display }}</p>
+    <p><strong>Price:</strong> £{{ item.price }}</p>
+
+    {% if item.image %}
+    <img src="{{ item.image.url }}" alt="{{ item.title }}" width="300">
+    {% endif %}
+
+    <p>{{ item.description }}</p>
+
+    {% if item.is_sold %}
+    <p><em>This item has been sold.</em></p>
+    {% endif %}
+
+    {% if user.is_authenticated and request.user == item.seller %}
+    <p>
+        <a href="{% url 'edit_item' item.id %}">Edit</a> |
+        <a href="{% url 'delete_item' item.id %}">Delete</a>
+    </p>
+    {% endif %}
+
+    {% if user.is_authenticated and not item.is_sold and request.user != item.seller %}
+    <form action="{% url 'buy_item' item.id %}" method="POST">
+        {% csrf_token %}
+        <button type="submit" aria-label="Buy {{ item.title }}">Buy Now</button>
+    </form>
+    {% endif %}
+
+    <p><a href="{% url 'home' %}">← Back to listings</a></p>
+</main>
+{% endblock %}
