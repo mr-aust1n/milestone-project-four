@@ -16,6 +16,10 @@
             <a href="/add/">Add Item</a> |
             <a href="/admin/">Admin</a> |
             <a href="/dashboard/">Dashboard</a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'my_orders' %}" aria-label="View your order history">My Orders</a>
+            {% endif %}
+
         </nav>
         <hr>
     </header>
