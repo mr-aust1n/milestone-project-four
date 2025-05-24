@@ -3,6 +3,8 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 
+from checkout.models import Order
+
 from .forms import ItemForm
 from .models import Item
 
@@ -65,4 +67,9 @@ def delete_item(request, item_id):
 @login_required
 def dashboard(request):
     my_items = Item.objects.filter(seller=request.user)
-    return render(request, "items/dashboard.html", {"my_items": my_items})
+    offers = Order.objects.filter(item__in=my_items, is_offer=True).select_related(
+        "item", "buyer"
+    )
+    return render(
+        request, "items/dashboard.html", {"my_items": my_items, "offers": offers}
+    )

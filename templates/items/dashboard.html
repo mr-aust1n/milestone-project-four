@@ -20,6 +20,26 @@
     </li>
     {% endfor %}
 </ul>
+
+<hr>
+<h3>Offers Received</h3>
+
+{% if offers %}
+<ul>
+    {% for offer in offers %}
+    <li>
+        <strong>{{ offer.item.title }}</strong> —
+        £{{ offer.price }} from {{ offer.buyer.username }}<br>
+        <em>{{ offer.offer_note }}</em> <br>
+        Submitted on {{ offer.created_at|date:"M d, Y H:i" }}
+        <hr>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No offers submitted yet.</p>
+{% endif %}
+
 {% else %}
 <p>You haven't listed any items yet.</p>
 {% endif %}
