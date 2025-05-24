@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main role="main" aria-labelledby="my-orders-heading">
+    <h2 id="my-orders-heading">My Orders</h2>
+
+    {% if orders %}
+    <ul>
+        {% for order in orders %}
+        <li>
+            <strong>{{ order.item.title }}</strong><br>
+            Price: £{{ order.price }}<br>
+            {% if order.is_offer %}
+            Offer Status: <strong>{{ order.status|title }}</strong><br>
+            {% endif %}
+            Date: {{ order.created_at|date:"M d, Y H:i" }}
+            <hr>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>You haven’t made any purchases or offers yet.</p>
+    {% endif %}
+</main>
+{% endblock %}
