@@ -135,3 +135,6 @@ This section outlines the manual testing performed for the **.env**.  This makes
 - Offer 
 ![Offer Sent](doc_images/offerSent.png) 
 ![Offer Received](doc_images/OfferReceived.png) 
+![Offer Accepted](doc_images/accepted.png) 
+
+

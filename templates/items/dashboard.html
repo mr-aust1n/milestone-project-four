@@ -32,8 +32,36 @@
         £{{ offer.price }} from {{ offer.buyer.username }}<br>
         <em>{{ offer.offer_note }}</em> <br>
         Submitted on {{ offer.created_at|date:"M d, Y H:i" }}
+        {% if offer.status == "pending" %}
+        <form action="{% url 'accept_offer' offer.id %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" aria-label="Accept offer from {{ offer.buyer.username }}">Accept</button>
+        </form>
+        <form action="{% url 'reject_offer' offer.id %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" aria-label="Reject offer from {{ offer.buyer.username }}">Reject</button>
+        </form>
+        {% else %}
+        <p>Status: <strong>{{ offer.status|title }}</strong></p>
+        {% endif %}
+
         <hr>
+
     </li>
+
+    {% if offer.status == "pending" %}
+    <form action="{% url 'accept_offer' offer.id %}" method="post" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit" aria-label="Accept offer from {{ offer.buyer.username }}">Accept</button>
+    </form>
+    <form action="{% url 'reject_offer' offer.id %}" method="post" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit" aria-label="Reject offer from {{ offer.buyer.username }}">Reject</button>
+    </form>
+    {% else %}
+    <p>Status: <strong>{{ offer.status|title }}</strong></p>
+    {% endif %}
+
     {% endfor %}
 </ul>
 {% else %}
