@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main role="main" aria-labelledby="make-offer-title">
+    <h2 id="make-offer-title">Make an Offer on {{ item.title }}</h2>
+
+    <form method="POST" aria-label="Offer form">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        <div>
+            <label for="{{ form.offer_price.id_for_label }}">{{ form.offer_price.label }}:</label>
+            {{ form.offer_price }}
+            {{ form.offer_price.errors }}
+        </div>
+
+        <div>
+            <label for="{{ form.note.id_for_label }}">{{ form.note.label }}:</label>
+            {{ form.note }}
+            {{ form.note.errors }}
+        </div>
+
+        <button type="submit" aria-label="Submit your offer for {{ item.title }}">Submit Offer</button>
+    </form>
+
+    <p><a href="{% url 'item_detail' item.id %}">← Back to item</a></p>
+</main>
+{% endblock %}
