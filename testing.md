@@ -138,3 +138,13 @@ This section outlines the manual testing performed for the **.env**.  This makes
 ![Offer Accepted](doc_images/accepted.png) 
 
 
+| Test Case                                  | Expected Result                                                                  | Status   |
+|-------------------------------------------|-----------------------------------------------------------------------------------|----------|
+| Logged-in seller visits /dashboard/       | Sees list of own items and received offers                                       | ✅ Pass  |
+| Offer note appears if provided            | Message from buyer is displayed under the offer                                  | ✅ Pass  |
+| Offer without note still displays         | Offer price, buyer, and date shown even with no message                          | ✅ Pass  |
+| Accept offer (POST)                       | Offer status updates to "Accepted", success message shown                        | ✅ Pass  |
+| Reject offer (POST)                       | Offer status updates to "Rejected", info message shown                           | ✅ Pass  |
+| Offer buttons hidden after action         | Accept/Reject buttons disappear after a decision                                 | ✅ Pass  |
+| Only seller of item can respond           | Other users cannot trigger accept/reject (redirect to dashboard)                 | ✅ Pass  |
+| Buyer cannot see other users’ offers      | Offers are not visible to buyers or anonymous users                              | ✅ Pass  |

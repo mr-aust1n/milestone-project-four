@@ -112,3 +112,13 @@ def reject_offer(request, offer_id):
     offer.save()
     messages.info(request, "Offer rejected.")
     return redirect("dashboard")
+
+
+@login_required
+def my_orders(request):
+    orders = (
+        Order.objects.filter(buyer=request.user)
+        .select_related("item")
+        .order_by("-created_at")
+    )
+    return render(request, "checkout/my_orders.html", {"orders": orders})
