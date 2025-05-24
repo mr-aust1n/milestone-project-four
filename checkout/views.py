@@ -2,6 +2,7 @@
 
 import stripe
 from django.conf import settings
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 
@@ -85,3 +86,29 @@ def make_offer(request, item_id):
         form = OfferForm()
 
     return render(request, "checkout/make_offer.html", {"form": form, "item": item})
+
+
+@login_required
+def accept_offer(request, offer_id):
+    offer = get_object_or_404(Order, id=offer_id, is_offer=True)
+
+    if offer.item.seller != request.user:
+        return redirect("dashboard")
+
+    offer.status = "accepted"
+    offer.save()
+    messages.success(request, "Offer accepted.")
+    return redirect("dashboard")
+
+
+@login_required
+def reject_offer(request, offer_id):
+    offer = get_object_or_404(Order, id=offer_id, is_offer=True)
+
+    if offer.item.seller != request.user:
+        return redirect("dashboard")
+
+    offer.status = "rejected"
+    offer.save()
+    messages.info(request, "Offer rejected.")
+    return redirect("dashboard")
