@@ -1,5 +1,4 @@
-# items/views.py
-
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 
@@ -10,8 +9,19 @@ from .models import Item
 
 
 def home(request):
+    category = request.GET.get("category")
     items = Item.objects.filter(is_sold=False).order_by("-date_posted")
-    return render(request, "items/home.html", {"items": items})
+
+    if category:
+        items = items.filter(category=category)
+
+    categories = Item.CATEGORY_CHOICES
+
+    return render(
+        request,
+        "items/home.html",
+        {"items": items, "categories": categories, "selected_category": category},
+    )
 
 
 @login_required
@@ -31,9 +41,6 @@ def add_item(request):
 def item_detail(request, item_id):
     item = get_object_or_404(Item, pk=item_id)
     return render(request, "items/item_detail.html", {"item": item})
-
-
-from django.contrib import messages
 
 
 @login_required
