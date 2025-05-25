@@ -4,8 +4,8 @@ from django.shortcuts import get_object_or_404, redirect, render
 
 from checkout.models import Order
 
-from .forms import ItemForm
-from .models import Item
+from .forms import ItemForm, MessageForm
+from .models import Item, Message
 
 
 def home(request):
@@ -79,4 +79,26 @@ def dashboard(request):
     )
     return render(
         request, "items/dashboard.html", {"my_items": my_items, "offers": offers}
+    )
+
+
+def item_detail(request, item_id):
+    item = get_object_or_404(Item, pk=item_id)
+    messages = item.messages.select_related("sender")
+
+    if request.method == "POST":
+        form = MessageForm(request.POST)
+        if form.is_valid():
+            message = form.save(commit=False)
+            message.item = item
+            message.sender = request.user
+            message.save()
+            return redirect("item_detail", item_id=item.id)
+    else:
+        form = MessageForm()
+
+    return render(
+        request,
+        "items/item_detail.html",
+        {"item": item, "form": form, "messages": messages},
     )
