@@ -1,4 +1,5 @@
 # items/models.py
+from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -23,3 +24,19 @@ class Item(models.Model):
 
     def __str__(self):
         return self.title
+
+
+from django.conf import settings
+
+
+class Message(models.Model):
+    item = models.ForeignKey("Item", on_delete=models.CASCADE, related_name="messages")
+    sender = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"Message by {self.sender.username} on {self.item.title}"
