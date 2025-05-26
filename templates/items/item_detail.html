@@ -38,6 +38,38 @@
     </form>
     {% endif %}
 
+    <hr>
+    <section aria-labelledby="messages-heading">
+        <h3 id="messages-heading">Messages</h3>
+
+        {% if user.is_authenticated and request.user != item.seller %}
+        <form method="POST" aria-label="Send a message to the seller">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            {{ form.message.errors }}
+            {{ form.message }}
+            <button type="submit">Send Message</button>
+        </form>
+
+
+        <hr>
+        {% endif %}
+
+        {% if messages %}
+        <ul>
+            {% for msg in messages %}
+            <li>
+                <strong>{{ msg.sender.username }}</strong> ({{ msg.created_at|date:"M d, Y H:i" }}):<br>
+                {{ msg.message }}
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>No messages yet.</p>
+        {% endif %}
+    </section>
+
+
 
     <p><a href="{% url 'home' %}">← Back to listings</a></p>
 </main>
