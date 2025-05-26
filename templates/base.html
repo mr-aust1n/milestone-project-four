@@ -21,6 +21,52 @@
             {% if user.is_authenticated and user.is_superuser %}
             <a href="/admin/">Admin</a>
             {% endif %}
+
+
+            {% if user.is_authenticated %}
+            <div class="notification-bell" style="display:inline-block; position:relative;">
+                🔔
+                <div class="dropdown" style="position:absolute; background:#fff; border:1px solid #ccc; padding:10px;">
+                    <strong>Notifications</strong><br><br>
+
+                    {% if notifications.messages %}
+                    <p><strong>Messages:</strong></p>
+                    <ul>
+                        {% for msg in notifications.messages %}
+                        <li>
+                            {{ msg.sender.username }} → <a href="{% url 'item_detail' msg.item.id %}">{{ msg.item.title
+                                }}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+
+                    {% if notifications.offers %}
+                    <p><strong>Offers:</strong></p>
+                    <ul>
+                        {% for offer in notifications.offers %}
+                        <li>
+                            Offer on <a href="{% url 'item_detail' offer.item.id %}">{{ offer.item.title }}</a> (£{{
+                            offer.price }})
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+
+                    {% if notifications.sales %}
+                    <p><strong>Sold:</strong></p>
+                    <ul>
+                        {% for item in notifications.sales %}
+                        <li>✔ {{ item.title }} marked as sold</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+
+
+
         </nav>
         <hr>
     </header>

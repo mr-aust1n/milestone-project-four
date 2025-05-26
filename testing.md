@@ -174,13 +174,14 @@ This section outlines the manual testing performed for the **.env**.  This makes
 
 | Test Case                                      | Expected Result                                                                 | Status |
 |-----------------------------------------------|----------------------------------------------------------------------------------|--------|
-| Logged-out user visits item page               | Message form **does not** appear                                                | ✅ / ❌ |
-| Logged-in user visits own item page            | Message form **does not** appear                                                | ✅ / ❌ |
-| Logged-in user visits someone else's item page | Message form is visible                                                         | ✅ / ❌ |
-| Enter message and submit                       | Redirects to same page, message saved and listed under form                     | ✅ / ❌ |
-| Empty message submit                           | Displays form validation error                                                  | ✅ / ❌ |
-| Message list loads                             | Older messages shown under "Messages" section, newest first                     | ✅ / ❌ |
-| Multiple users send messages                   | Each user's name and message timestamp are displayed correctly                  | ✅ / ❌ |
+| Logged-out user visits item page               | Message form **does not** appear                                                | ✅ Pass  |
+| Logged-in user visits own item page            | Message form **does not** appear                                                | ✅ Pass  |
+| Logged-in user visits someone else's item page | Message form is visible                                                         | ✅ Pass  |
+| Enter message and submit                       | Redirects to same page, message saved and listed under form                     | ✅ Pass  |
+| Empty message submit                           | Displays form validation error                                                  | ✅ Pass  |
+| Message list loads                             | Older messages shown under "Messages" section, newest first                     | ✅ Pass  |
+| Multiple users send messages                   | Each user's name and message timestamp are displayed correctly                  | ✅ Pass  |
+| Email notification                             | An Email from the buyer to the seller works correctly                           | ✅ Pass  |
 
 
 
