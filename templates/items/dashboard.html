@@ -1,5 +1,4 @@
 <!-- Dashboard -->
-
 {% extends "base.html" %}
 
 {% block content %}
@@ -11,6 +10,8 @@
     <li>
         <strong>{{ item.title }}</strong><br>
         £{{ item.price }}<br>
+        <p><strong>Available:</strong> {{ item.quantity }}</p> <!-- ✅ Quantity shown here -->
+
         {% if item.image %}
         <img src="{{ item.image.url }}" alt="{{ item.title }}" width="150">
         {% endif %}

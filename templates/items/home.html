@@ -42,6 +42,9 @@
                 </a>
                 {% endif %}
 
+                <p><strong>Available:</strong> {{ item.quantity }}</p>
+
+
                 <p>{{ item.description|truncatewords:20 }}</p>
             </article>
         </li>
