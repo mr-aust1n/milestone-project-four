@@ -1,5 +1,7 @@
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
 from django.shortcuts import get_object_or_404, redirect, render
 
 from checkout.models import Order
@@ -40,7 +42,38 @@ def add_item(request):
 
 def item_detail(request, item_id):
     item = get_object_or_404(Item, pk=item_id)
-    return render(request, "items/item_detail.html", {"item": item})
+    messages = item.messages.select_related("sender")
+
+    if request.method == "POST":
+        form = MessageForm(request.POST)
+        if form.is_valid():
+            message = form.save(commit=False)
+            message.item = item
+            message.sender = request.user
+            message.save()
+
+            # ✅ Email alert to seller
+            send_mail(
+                subject=f"New message about your item: {item.title}",
+                message=(
+                    f"You've received a new message from {request.user.username}:\n\n"
+                    f"{message.message}\n\n"
+                    f"View the item here: http://127.0.0.1:8000/{item.id}/"
+                ),
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=[item.seller.email],
+                fail_silently=True,
+            )
+
+            return redirect("item_detail", item_id=item.id)
+    else:
+        form = MessageForm()
+
+    return render(
+        request,
+        "items/item_detail.html",
+        {"item": item, "form": form, "messages": messages},
+    )
 
 
 @login_required
@@ -69,39 +102,6 @@ def delete_item(request, item_id):
         return redirect("home")
 
     return render(request, "items/delete_item.html", {"item": item})
-
-
-@login_required
-def dashboard(request):
-    my_items = Item.objects.filter(seller=request.user)
-    offers = Order.objects.filter(item__in=my_items, is_offer=True).select_related(
-        "item", "buyer"
-    )
-    return render(
-        request, "items/dashboard.html", {"my_items": my_items, "offers": offers}
-    )
-
-
-def item_detail(request, item_id):
-    item = get_object_or_404(Item, pk=item_id)
-    messages = item.messages.select_related("sender")
-
-    if request.method == "POST":
-        form = MessageForm(request.POST)
-        if form.is_valid():
-            message = form.save(commit=False)
-            message.item = item
-            message.sender = request.user
-            message.save()
-            return redirect("item_detail", item_id=item.id)
-    else:
-        form = MessageForm()
-
-    return render(
-        request,
-        "items/item_detail.html",
-        {"item": item, "form": form, "messages": messages},
-    )
 
 
 @login_required

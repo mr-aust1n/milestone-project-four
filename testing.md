@@ -187,4 +187,7 @@ This section outlines the manual testing performed for the **.env**.  This makes
 ![Message Composed ](doc_images/MessageCompose.png) 
 ![Message Sent](doc_images/messageSent.png) 
 ![Message Received](doc_images/messageReceived.png) 
+![Email Message Received](doc_images/EmailMessage.png) 
+
+
 
