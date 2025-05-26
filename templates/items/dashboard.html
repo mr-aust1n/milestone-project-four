@@ -1,4 +1,5 @@
 <!-- Dashboard -->
+
 {% extends "base.html" %}
 
 {% block content %}
@@ -30,8 +31,9 @@
     <li>
         <strong>{{ offer.item.title }}</strong> —
         £{{ offer.price }} from {{ offer.buyer.username }}<br>
-        <em>{{ offer.offer_note }}</em> <br>
-        Submitted on {{ offer.created_at|date:"M d, Y H:i" }}
+        <em>{{ offer.offer_note }}</em><br>
+        Submitted on {{ offer.created_at|date:"M d, Y H:i" }}<br>
+
         {% if offer.status == "pending" %}
         <form action="{% url 'accept_offer' offer.id %}" method="post" style="display:inline;">
             {% csrf_token %}
@@ -44,28 +46,30 @@
         {% else %}
         <p>Status: <strong>{{ offer.status|title }}</strong></p>
         {% endif %}
-
         <hr>
-
     </li>
-
-    {% if offer.status == "pending" %}
-    <form action="{% url 'accept_offer' offer.id %}" method="post" style="display:inline;">
-        {% csrf_token %}
-        <button type="submit" aria-label="Accept offer from {{ offer.buyer.username }}">Accept</button>
-    </form>
-    <form action="{% url 'reject_offer' offer.id %}" method="post" style="display:inline;">
-        {% csrf_token %}
-        <button type="submit" aria-label="Reject offer from {{ offer.buyer.username }}">Reject</button>
-    </form>
-    {% else %}
-    <p>Status: <strong>{{ offer.status|title }}</strong></p>
-    {% endif %}
-
     {% endfor %}
 </ul>
 {% else %}
 <p>No offers submitted yet.</p>
+{% endif %}
+
+<hr>
+<h3>Messages Received</h3>
+
+{% if messages %}
+<ul>
+    {% for msg in messages %}
+    <li>
+        <strong>{{ msg.sender.username }}</strong> →
+        <a href="{% url 'item_detail' msg.item.id %}">{{ msg.item.title }}</a><br>
+        <em>{{ msg.created_at|date:"M d, Y H:i" }}</em><br>
+        {{ msg.message }}
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No messages received yet.</p>
 {% endif %}
 
 {% else %}

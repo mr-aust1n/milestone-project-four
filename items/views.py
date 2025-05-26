@@ -102,3 +102,20 @@ def item_detail(request, item_id):
         "items/item_detail.html",
         {"item": item, "form": form, "messages": messages},
     )
+
+
+@login_required
+def dashboard(request):
+    my_items = Item.objects.filter(seller=request.user)
+    offers = Order.objects.filter(item__in=my_items, is_offer=True).select_related(
+        "item", "buyer"
+    )
+    messages = Message.objects.filter(item__seller=request.user).select_related(
+        "item", "sender"
+    )
+
+    return render(
+        request,
+        "items/dashboard.html",
+        {"my_items": my_items, "offers": offers, "messages": messages},
+    )
