@@ -22,31 +22,27 @@
             <a href="/admin/">Admin</a>
             {% endif %}
 
-
-            {% if user.is_authenticated %}
-            <div class="notification-bell" style="display:inline-block; position:relative;">
-                🔔
-                <div class="dropdown" style="position:absolute; background:#fff; border:1px solid #ccc; padding:10px;">
+            <div class="notification-bell" style="position: relative;">
+                <button id="bellButton" aria-label="Toggle notifications">🔔</button>
+                <div id="notificationDropdown"
+                    style="display: none; position: absolute; right: 0; background: white; border: 1px solid #ccc; padding: 10px; width: 300px; z-index: 100;">
                     <strong>Notifications</strong><br><br>
 
                     {% if notifications.messages %}
-                    <p><strong>Messages:</strong></p>
+                    <p><strong>Messages</strong></p>
                     <ul>
                         {% for msg in notifications.messages %}
-                        <li>
-                            {{ msg.sender.username }} → <a href="{% url 'item_detail' msg.item.id %}">{{ msg.item.title
-                                }}</a>
-                        </li>
+                        <li>{{ msg.sender.username }} → <a href="{% url 'item_detail' msg.item.id %}">{{ msg.item.title
+                                }}</a></li>
                         {% endfor %}
                     </ul>
                     {% endif %}
 
                     {% if notifications.offers %}
-                    <p><strong>Offers:</strong></p>
+                    <p><strong>Offers</strong></p>
                     <ul>
                         {% for offer in notifications.offers %}
-                        <li>
-                            Offer on <a href="{% url 'item_detail' offer.item.id %}">{{ offer.item.title }}</a> (£{{
+                        <li>Offer on <a href="{% url 'item_detail' offer.item.id %}">{{ offer.item.title }}</a> (£{{
                             offer.price }})
                         </li>
                         {% endfor %}
@@ -54,16 +50,16 @@
                     {% endif %}
 
                     {% if notifications.sales %}
-                    <p><strong>Sold:</strong></p>
+                    <p><strong>Sold Items</strong></p>
                     <ul>
                         {% for item in notifications.sales %}
-                        <li>✔ {{ item.title }} marked as sold</li>
+                        <li>✔ {{ item.title }}</li>
                         {% endfor %}
                     </ul>
                     {% endif %}
                 </div>
             </div>
-            {% endif %}
+
 
 
 
@@ -77,6 +73,11 @@
         <hr>
         <p>&copy; 2025 ReLuvd Marketplace</p>
     </footer>
+
+    {% load static %}
+    <script src="{% static 'js/notifications.js' %}"></script>
+
+
 </body>
 
 </html>
