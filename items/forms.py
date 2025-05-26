@@ -7,7 +7,7 @@ from .models import Item, Message
 class ItemForm(forms.ModelForm):
     class Meta:
         model = Item
-        fields = ["title", "description", "category", "price", "image"]
+        fields = ["title", "description", "category", "price", "image", "quantity"]
 
 
 class MessageForm(forms.ModelForm):

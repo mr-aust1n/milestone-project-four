@@ -21,6 +21,7 @@ class Item(models.Model):
     seller = models.ForeignKey(User, on_delete=models.CASCADE, related_name="items")
     date_posted = models.DateTimeField(auto_now_add=True)
     is_sold = models.BooleanField(default=False)
+    quantity = models.PositiveIntegerField(default=1)
 
     def __str__(self):
         return self.title

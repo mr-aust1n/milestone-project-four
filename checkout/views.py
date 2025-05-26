@@ -48,9 +48,15 @@ def create_checkout_session(request, item_id):
 @login_required
 def payment_success(request, item_id):
     item = get_object_or_404(Item, pk=item_id)
-    item.is_sold = True
+
+    # Reduces quantity by 1
+    item.quantity -= 1
+    if item.quantity <= 0:
+        item.is_sold = True
+        item.quantity = 0  # Safety
     item.save()
 
+    # Create the order record
     Order.objects.create(
         item=item,
         buyer=request.user,
