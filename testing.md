@@ -170,4 +170,21 @@ This section outlines the manual testing performed for the **.env**.  This makes
 
 
 
+## Messaging Feature - Manual Testing
+
+| Test Case                                      | Expected Result                                                                 | Status |
+|-----------------------------------------------|----------------------------------------------------------------------------------|--------|
+| Logged-out user visits item page               | Message form **does not** appear                                                | ✅ / ❌ |
+| Logged-in user visits own item page            | Message form **does not** appear                                                | ✅ / ❌ |
+| Logged-in user visits someone else's item page | Message form is visible                                                         | ✅ / ❌ |
+| Enter message and submit                       | Redirects to same page, message saved and listed under form                     | ✅ / ❌ |
+| Empty message submit                           | Displays form validation error                                                  | ✅ / ❌ |
+| Message list loads                             | Older messages shown under "Messages" section, newest first                     | ✅ / ❌ |
+| Multiple users send messages                   | Each user's name and message timestamp are displayed correctly                  | ✅ / ❌ |
+
+
+
+![Message Composed ](doc_images/MessageCompose.png) 
+![Message Sent](doc_images/messageSent.png) 
+![Message Received](doc_images/messageReceived.png) 
 
