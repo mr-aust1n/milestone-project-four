@@ -122,3 +122,11 @@ def my_orders(request):
         .order_by("-created_at")
     )
     return render(request, "checkout/my_orders.html", {"orders": orders})
+
+
+@login_required
+def my_offers(request):
+    offers = Order.objects.filter(buyer=request.user, is_offer=True).select_related(
+        "item"
+    )
+    return render(request, "checkout/my_offers.html", {"offers": offers})

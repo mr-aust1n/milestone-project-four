@@ -60,7 +60,9 @@
                 </div>
             </div>
 
-
+            {% if user.is_authenticated %}
+            <a href="{% url 'my_offers' %}">My Offers</a>
+            {%endif %}
 
 
         </nav>

@@ -32,6 +32,7 @@ urlpatterns = [
     path("logout/", auth_views.LogoutView.as_view(next_page="home"), name="logout"),
     path("accounts/", include("accounts.urls")),
     path("checkout/", include("checkout.urls")),
+    path("checkout/", include("checkout.urls")),
 ]
 
 if settings.DEBUG:

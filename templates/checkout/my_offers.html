@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main role="main" aria-labelledby="my-offers-heading">
+    <h2 id="my-offers-heading">My Offer History</h2>
+
+    {% if offers %}
+    <table aria-describedby="my-offers-heading">
+        <thead>
+            <tr>
+                <th scope="col">Item</th>
+                <th scope="col">Your Offer (£)</th>
+                <th scope="col">Status</th>
+                <th scope="col">Submitted</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for offer in offers %}
+            <tr>
+                <td>
+                    <a href="{% url 'item_detail' offer.item.id %}" aria-label="View item {{ offer.item.title }}">
+                        {{ offer.item.title }}
+                    </a>
+                </td>
+                <td>{{ offer.price }}</td>
+                <td>{{ offer.status|title }}</td>
+                <td>{{ offer.created_at|date:"M d, Y H:i" }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>You haven’t made any offers yet.</p>
+    {% endif %}
+</main>
+{% endblock %}
