@@ -18,6 +18,11 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 def create_checkout_session(request, item_id):
     item = get_object_or_404(Item, pk=item_id)
 
+    #  Prevent checkout if out of stock
+    if item.quantity < 1:
+        messages.error(request, "Sorry, this item is out of stock.")
+        return redirect("item_detail", item_id=item.id)
+
     if item.is_sold:
         return redirect("item_detail", item_id=item.id)
 

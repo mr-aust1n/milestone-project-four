@@ -25,11 +25,16 @@
     {% endif %}
 
     {% if user.is_authenticated and not item.is_sold and request.user != item.seller %}
+    {% if item.quantity > 0 %}
     <form action="{% url 'buy_item' item.id %}" method="POST">
         {% csrf_token %}
         <button type="submit" aria-label="Buy {{ item.title }}">Buy Now</button>
     </form>
+    {% else %}
+    <p><strong>Out of stock</strong></p>
     {% endif %}
+    {% endif %}
+
 
 
     {% if user.is_authenticated and not item.is_sold and request.user != item.seller %}
