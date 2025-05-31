@@ -1,12 +1,45 @@
-/* Base CSS */
+/* ========================================
+   BASE HEADER CSS
+   ======================================== */
 
-/* Reset the nav list for mobile */
+/* Base header container */
+.site-header {
+    background-color: var(--background);
+    border-bottom: 1px solid #ddd;
+    padding: 1rem;
+    position: relative;
+    z-index: 100;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Logo */
+.logo a {
+    font-size: 1.75rem;
+    color: var(--primary-purple);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+/* Burger button (mobile nav toggle) */
+.nav-toggle {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--primary-red);
+}
+
 .site-nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
     display: none;
-    /* hidden by default on mobile */
+    /* Hidden by default on mobile */
     flex-direction: column;
     background-color: var(--background);
     position: absolute;
@@ -31,4 +64,78 @@
 .site-nav ul li a:hover {
     background-color: var(--primary-purple);
     color: var(--text-light);
+}
+
+/* Show nav when active */
+.site-nav.active ul {
+    display: flex;
+}
+
+/* Notification Bell */
+.notification-bell {
+    position: relative;
+    margin-left: 1rem;
+}
+
+.notification-bell button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--primary-red);
+}
+
+.notifications-dropdown {
+    display: none;
+    position: absolute;
+    top: 2.5rem;
+    right: 0;
+    width: 300px;
+    background: var(--background);
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    z-index: 1000;
+}
+
+.notification-bell.active .notifications-dropdown {
+    display: block;
+}
+
+/* Container layout */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Footer */
+.site-footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding: 1rem 0;
+    border-top: 1px solid #ddd;
+}
+
+/* DESKTOP */
+@media (min-width: 768px) {
+    .site-nav ul {
+        display: flex !important;
+        position: static;
+        flex-direction: row;
+        background: none;
+        border: none;
+    }
+
+    .site-nav ul li {
+        border: none;
+    }
+
+    .site-nav ul li a {
+        padding: 0.5rem 1rem;
+    }
+
+    .nav-toggle {
+        display: none;
+    }
 }

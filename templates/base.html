@@ -11,18 +11,23 @@
 
     <title>ReLuvd</title>
 
-
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/base_header.css' %}">
 </head>
 
 <body>
-    <header class="site-header">
+    <header class="site-header" role="banner">
         <div class="container">
             <div class="header-content">
-                <h1 class="logo"><a href="/">ReLuvd</a></h1>
 
-                <button class="nav-toggle" aria-label="Toggle navigation menu">&#9776;</button>
+                <!-- Image Logo -->
+                <div class="logo">
+                    <a href="/" aria-label="ReLuvd homepage">
+                        <img src="{% static 'images/reluvd.png' %}" alt="ReLuvd Logo" width="150" height="auto">
+                    </a>
+                </div>
+
+                <button class="nav-toggle" aria-label="Toggle main menu">&#9776;</button>
 
                 <nav class="site-nav" aria-label="Main navigation">
                     <ul>
@@ -45,8 +50,9 @@
                 </nav>
 
                 <div class="notification-bell">
-                    <button id="bellButton" aria-label="Toggle notifications">🔔</button>
-                    <div id="notificationDropdown" class="notifications-dropdown">
+                    <button id="bellButton" aria-label="View and toggle notifications">🔔</button>
+                    <div id="notificationDropdown" class="notifications-dropdown" role="region"
+                        aria-label="Notifications">
                         <strong>Notifications</strong><br><br>
 
                         {% if notifications.messages %}
@@ -86,11 +92,11 @@
         </div>
     </header>
 
-    <main class="container">
+    <main class="container" role="main">
         {% block content %}{% endblock %}
     </main>
 
-    <footer class="site-footer">
+    <footer class="site-footer" role="contentinfo">
         <div class="container">
             <p>&copy; 2025 ReLuvd Marketplace</p>
         </div>
