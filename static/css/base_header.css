@@ -1,0 +1,34 @@
+/* Base CSS */
+
+/* Reset the nav list for mobile */
+.site-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: none;
+    /* hidden by default on mobile */
+    flex-direction: column;
+    background-color: var(--background);
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    z-index: 10;
+    border-top: 1px solid #ddd;
+}
+
+.site-nav ul li {
+    border-bottom: 1px solid #eee;
+}
+
+.site-nav ul li a {
+    display: block;
+    padding: 1rem;
+    color: var(--text-dark);
+    text-decoration: none;
+}
+
+.site-nav ul li a:hover {
+    background-color: var(--primary-purple);
+    color: var(--text-light);
+}

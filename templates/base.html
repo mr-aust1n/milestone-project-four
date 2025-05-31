@@ -11,81 +11,92 @@
 
     <title>ReLuvd</title>
 
-    <link rel="stylesheet" href="static/js/css/style.css">
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base_header.css' %}">
 </head>
 
-
-
 <body>
-    <header>
-        <h1>ReLuvd</h1>
-        <nav>
-            <a href="/">Home</a> |
-            <a href="/add/">Add Item</a> |
-            <a href="/dashboard/">Dashboard</a> |
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo"><a href="/">ReLuvd</a></h1>
 
-            {% if user.is_authenticated %}
-            <a href="{% url 'my_orders' %}" aria-label="View your order history">My Orders</a> |
-            {% endif %}
+                <button class="nav-toggle" aria-label="Toggle navigation menu">&#9776;</button>
 
-            {% if user.is_authenticated and user.is_superuser %}
-            <a href="/admin/">Admin</a> |
-            {% endif %}
-
-            {% if user.is_authenticated %}
-            <a href="{% url 'my_offers' %}">My Offers</a> |
-            {% endif %}
-
-            <div class="notification-bell" style="display: inline-block; position: relative;">
-                <button id="bellButton" aria-label="Toggle notifications">🔔</button>
-                <div id="notificationDropdown"
-                    style="display: none; position: absolute; right: 0; background: white; border: 1px solid #ccc; padding: 10px; width: 300px; z-index: 100;">
-                    <strong>Notifications</strong><br><br>
-
-                    {% if notifications.messages %}
-                    <p><strong>Messages</strong></p>
+                <nav class="site-nav" aria-label="Main navigation">
                     <ul>
-                        {% for msg in notifications.messages %}
-                        <li>{{ msg.sender.username }} → <a href="{% url 'item_detail' msg.item.id %}">{{ msg.item.title
-                                }}</a></li>
-                        {% endfor %}
-                    </ul>
-                    {% endif %}
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/add/">Add Item</a></li>
+                        <li><a href="/dashboard/">Dashboard</a></li>
 
-                    {% if notifications.offers %}
-                    <p><strong>Offers</strong></p>
-                    <ul>
-                        {% for offer in notifications.offers %}
-                        <li>Offer on <a href="{% url 'item_detail' offer.item.id %}">{{ offer.item.title }}</a> (£{{
-                            offer.price }})</li>
-                        {% endfor %}
-                    </ul>
-                    {% endif %}
+                        {% if user.is_authenticated %}
+                        <li><a href="{% url 'my_orders' %}">My Orders</a></li>
+                        {% endif %}
 
-                    {% if notifications.sales %}
-                    <p><strong>Sold Items</strong></p>
-                    <ul>
-                        {% for item in notifications.sales %}
-                        <li>✔ {{ item.title }}</li>
-                        {% endfor %}
+                        {% if user.is_authenticated and user.is_superuser %}
+                        <li><a href="/admin/">Admin</a></li>
+                        {% endif %}
+
+                        {% if user.is_authenticated %}
+                        <li><a href="{% url 'my_offers' %}">My Offers</a></li>
+                        {% endif %}
                     </ul>
-                    {% endif %}
+                </nav>
+
+                <div class="notification-bell">
+                    <button id="bellButton" aria-label="Toggle notifications">🔔</button>
+                    <div id="notificationDropdown" class="notifications-dropdown">
+                        <strong>Notifications</strong><br><br>
+
+                        {% if notifications.messages %}
+                        <p><strong>Messages</strong></p>
+                        <ul>
+                            {% for msg in notifications.messages %}
+                            <li>{{ msg.sender.username }} →
+                                <a href="{% url 'item_detail' msg.item.id %}">{{ msg.item.title }}</a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+
+                        {% if notifications.offers %}
+                        <p><strong>Offers</strong></p>
+                        <ul>
+                            {% for offer in notifications.offers %}
+                            <li>Offer on
+                                <a href="{% url 'item_detail' offer.item.id %}">{{ offer.item.title }}</a> (£{{
+                                offer.price }})
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+
+                        {% if notifications.sales %}
+                        <p><strong>Sold Items</strong></p>
+                        <ul>
+                            {% for item in notifications.sales %}
+                            <li>✔ {{ item.title }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
-        </nav>
-        <hr>
+        </div>
     </header>
 
-    {% block content %}{% endblock %}
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
 
-    <footer>
-        <hr>
-        <p>&copy; 2025 ReLuvd Marketplace</p>
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2025 ReLuvd Marketplace</p>
+        </div>
     </footer>
 
-    {% load static %}
-    <script src="static/js/notifications.js"></script>
-
+    <script src="{% static 'js/notifications.js' %}"></script>
 </body>
 
 </html>
