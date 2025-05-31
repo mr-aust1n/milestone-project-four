@@ -165,3 +165,6 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 # Stripe Keys
 STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_PUBLIC_KEY")
 STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY")
+
+# Trusted Local IPs
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "192.168.86.38"]
