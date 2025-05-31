@@ -12,13 +12,31 @@ from .models import Item, Message
 
 def home(request):
     category = request.GET.get("category")
-    items = Item.objects.filter(is_sold=False).order_by("-date_posted")
+    sort = request.GET.get("sort")
+
+    items = Item.objects.all()
 
     if category:
         items = items.filter(category=category)
 
-    categories = Item.CATEGORY_CHOICES
+    if sort == "price_asc":
+        items = items.order_by("price")
+    elif sort == "price_desc":
+        items = items.order_by("-price")
+    elif sort == "title_asc":
+        items = items.order_by("title")
+    elif sort == "title_desc":
+        items = items.order_by("-title")
 
+    # Build your categories list as you're already doing:
+    categories = Item.CATEGORY_CHOICES  # or however you're generating it
+
+    context = {
+        "items": items,
+        "categories": categories,
+        "selected_category": category,
+        "selected_sort": sort,
+    }
     return render(
         request,
         "items/home.html",

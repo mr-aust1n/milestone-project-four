@@ -5,22 +5,29 @@
     <h2>Latest Items</h2>
 
     {% if items %}
-
-    <!-- Category Filter -->
     <form method="GET" id="filterForm">
+
+        <!-- Category Filter -->
         <label for="category" class="visually-hidden">Filter by category</label>
         <select name="category" id="category" onchange="document.getElementById('filterForm').submit();">
             <option value="">All Categories</option>
             {% for code, label in categories %}
-            {% if code == selected_category %}
-            <option value="{{ code }}" selected>{{ label }}</option>
-            {% else %}
-            <option value="{{ code }}">{{ label }}</option>
-            {% endif %}
+            <option value="{{ code }}" {% if code == selected_category %}selected{% endif %}>{{ label }}</option>
             {% endfor %}
         </select>
-    </form>
 
+        <!-- Sort By Filter -->
+        <label for="sort" class="visually-hidden">Sort by</label>
+        <select name="sort" id="sort" onchange="document.getElementById('filterForm').submit();">
+            <option value="">Sort By</option>
+            <option value="price_asc" {% if selected_sort == 'price_asc' %}selected{% endif %}>Price: Low to High
+            </option>
+            <option value="price_desc" {% if selected_sort == 'price_desc' %}selected{% endif %}>Price: High to Low
+            </option>
+            <option value="title_asc" {% if selected_sort == 'title_asc' %}selected{% endif %}>Title: A to Z</option>
+            <option value="title_desc" {% if selected_sort == 'title_desc' %}selected{% endif %}>Title: Z to A</option>
+        </select>
+    </form>
 
     <!-- Search Field -->
     <input type="text" id="itemSearch" placeholder="Search items..." aria-label="Search by item title">
@@ -43,8 +50,6 @@
                 {% endif %}
 
                 <p><strong>Available:</strong> {{ item.quantity }}</p>
-
-
                 <p>{{ item.description|truncatewords:20 }}</p>
             </article>
         </li>
@@ -63,7 +68,6 @@
 
         input.addEventListener('keyup', function () {
             const query = this.value.toLowerCase();
-
             items.forEach(function (li) {
                 const title = li.querySelector('.item-title').textContent.toLowerCase();
                 li.style.display = title.includes(query) ? '' : 'none';
