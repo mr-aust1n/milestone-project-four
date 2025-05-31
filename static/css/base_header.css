@@ -96,12 +96,16 @@
     background: var(--background);
     border: 1px solid #ccc;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 1rem;
+    padding: 3rem;
     z-index: 1000;
 }
 
 .notification-bell.active .notifications-dropdown {
     display: block;
+}
+
+.offers {
+    padding-top: 1.3em;
 }
 
 /* Container layout */
@@ -139,5 +143,9 @@
 
     .nav-toggle {
         display: none;
+    }
+
+    .site-nav ul {
+        box-shadow: none;
     }
 }

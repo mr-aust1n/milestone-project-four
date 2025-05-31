@@ -5,6 +5,8 @@
 
 ❌ - Fail
 
+## Opening Ports to test on a local network
+![Email Message Received](doc_images/localSetup.png) 
 
 
 # Manual Testing: Item Detail View
@@ -189,6 +191,5 @@ This section outlines the manual testing performed for the **.env**.  This makes
 ![Message Sent](doc_images/messageSent.png) 
 ![Message Received](doc_images/messageReceived.png) 
 ![Email Message Received](doc_images/EmailMessage.png) 
-
 
 

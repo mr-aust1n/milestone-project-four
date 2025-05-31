@@ -67,12 +67,11 @@
                         {% endif %}
 
                         {% if notifications.offers %}
-                        <p><strong>Offers</strong></p>
+                        <p class="offers"><strong>Offers</strong></p>
                         <ul>
                             {% for offer in notifications.offers %}
-                            <li>Offer on
-                                <a href="{% url 'item_detail' offer.item.id %}">{{ offer.item.title }}</a> (£{{
-                                offer.price }})
+                            <li>Offer on →
+                                <a href="{% url 'item_detail' offer.item.id %}">{{ offer.item.title }}</a>
                             </li>
                             {% endfor %}
                         </ul>
