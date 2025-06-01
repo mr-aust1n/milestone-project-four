@@ -1,4 +1,9 @@
 {% extends "base.html" %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/my_offers.css' %}">
+{% endblock %}
+
 
 {% block content %}
 <main role="main" aria-labelledby="my-offers-heading">
@@ -12,6 +17,7 @@
                 <th scope="col">Your Offer (£)</th>
                 <th scope="col">Status</th>
                 <th scope="col">Submitted</th>
+                <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -25,6 +31,12 @@
                 <td>{{ offer.price }}</td>
                 <td>{{ offer.status|title }}</td>
                 <td>{{ offer.created_at|date:"M d, Y H:i" }}</td>
+                <td>
+                    <form action="{% url 'delete_offer' offer.id %}" method="POST" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" aria-label="Delete offer for {{ offer.item.title }}">Delete</button>
+                    </form>
+                </td>
             </tr>
             {% endfor %}
         </tbody>

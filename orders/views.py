@@ -17,3 +17,15 @@ def delete_order(request, order_id):
         return redirect("my_orders")
 
     return redirect("my_orders")
+
+
+@login_required
+def delete_offer(request, offer_id):
+    offer = get_object_or_404(Order, id=offer_id, buyer=request.user, is_offer=True)
+
+    if request.method == "POST":
+        offer.delete()
+        messages.success(request, "Offer deleted successfully.")
+        return redirect("my_offers")
+
+    return redirect("my_offers")
