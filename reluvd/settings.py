@@ -168,3 +168,6 @@ STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY")
 
 # Trusted Local IPs
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", "192.168.86.38"]
+
+# Logout settings
+LOGOUT_REDIRECT_URL = "home"
