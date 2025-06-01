@@ -1,4 +1,10 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
 
 {% block content %}
 <main role="main" aria-label="Item listings">
@@ -36,22 +42,24 @@
     <ul class="item-list" aria-live="polite" id="itemList">
         {% for item in items %}
         <li>
-            <article aria-label="Item: {{ item.title }}">
+            <div class="item-card">
                 <a href="{% url 'item_detail' item.id %}" aria-label="View details for {{ item.title }}">
-                    <h3 class="item-title">{{ item.title }}</h3>
+                    {% if item.image %}
+                    <div class="item-image-wrapper">
+                        <img src="{{ item.image.url }}" alt="{{ item.title }}">
+                    </div>
+                    {% endif %}
                 </a>
 
-                <p><strong>Price:</strong> £{{ item.price }}</p>
-
-                {% if item.image %}
-                <a href="{% url 'item_detail' item.id %}" aria-label="Image of {{ item.title }}">
-                    <img src="{{ item.image.url }}" alt="{{ item.title }}" width="150">
-                </a>
-                {% endif %}
-
-                <p><strong>Available:</strong> {{ item.quantity }}</p>
-                <p>{{ item.description|truncatewords:20 }}</p>
-            </article>
+                <div class="item-info">
+                    <a href="{% url 'item_detail' item.id %}">
+                        <h3 class="item-title">{{ item.title }}</h3>
+                    </a>
+                    <p><strong>Price:</strong> £{{ item.price }}</p>
+                    <p><strong>Available:</strong> {{ item.quantity }}</p>
+                    <p>{{ item.description|truncatewords:20 }}</p>
+                </div>
+            </div>
         </li>
         {% endfor %}
     </ul>
@@ -60,19 +68,6 @@
     <p>No items available yet.</p>
     {% endif %}
 </main>
+<script src="{% static 'js/home_search.js' %}"></script>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const input = document.getElementById('itemSearch');
-        const items = document.querySelectorAll('#itemList li');
-
-        input.addEventListener('keyup', function () {
-            const query = this.value.toLowerCase();
-            items.forEach(function (li) {
-                const title = li.querySelector('.item-title').textContent.toLowerCase();
-                li.style.display = title.includes(query) ? '' : 'none';
-            });
-        });
-    });
-</script>
 {% endblock %}
