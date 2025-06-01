@@ -1,15 +1,52 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/edit_item.css' %}">
+{% endblock %}
 
 {% block content %}
 <main role="main" aria-labelledby="edit-item-title">
-    <h2 id="edit-item-title">Edit: {{ item.title }}</h2>
+    <div class="form-wrapper">
+        <h2 id="edit-item-title">Edit: {{ item.title }}</h2>
 
-    <form method="POST" enctype="multipart/form-data" aria-label="Edit item form">
-        {% csrf_token %}
-        {{ form.as_p }}
+        <form method="POST" enctype="multipart/form-data" aria-label="Edit item form">
+            {% csrf_token %}
 
-        <button type="submit" aria-label="Save changes to {{ item.title }}">Save Changes</button>
-        <a href="{% url 'item_detail' item.id %}" role="link" aria-label="Cancel and go back to item page">Cancel</a>
-    </form>
+            <!-- Render each field manually -->
+
+            <label for="{{ form.category.id_for_label }}">Category:</label>
+            {{ form.category }}
+
+            <label for="{{ form.price.id_for_label }}">Price:</label>
+            {{ form.price }}
+
+            <label for="{{ form.quantity.id_for_label }}">Quantity:</label>
+            {{ form.quantity }}
+
+            <label for="{{ form.image.id_for_label }}">Image:</label>
+            {{ form.image }}
+
+            {% if form.image.value %}
+
+
+            <p>
+
+                Current image: <a href="{{ form.image.value.url }}" target="_blank">{{ form.image.value.name }}</a>
+            </p>
+            <div class="clearable-file-wrapper">
+                {{ form.image.clear }}
+            </div> {% endif %}
+
+
+            <div class="form-buttons">
+                <button type="submit" class="btn-save" aria-label="Save changes to {{ item.title }}">Save
+                    Changes</button>
+                <a href="{% url 'item_detail' item.id %}" class="btn-cancel"
+                    aria-label="Cancel editing {{ item.title }}">Cancel</a>
+            </div>
+
+        </form>
+    </div>
 </main>
 {% endblock %}

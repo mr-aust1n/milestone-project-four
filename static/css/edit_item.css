@@ -1,0 +1,140 @@
+/* ========= FORM PAGE GLOBAL STYLING ========= */
+
+.form-wrapper {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    max-width: 600px;
+    margin: 3rem auto;
+}
+
+/* Headings */
+.form-wrapper h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary-purple);
+    text-align: center;
+}
+
+/* Form Labels */
+form label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--primary-purple);
+}
+
+/* Form Fields */
+form input,
+form select,
+form textarea {
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 100%;
+    margin-bottom: 1.5rem;
+    background-color: #fafafa;
+    font-size: 1rem;
+    transition: border 0.2s ease;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+    border-color: var(--primary-purple);
+    outline: none;
+}
+
+.clearable-file-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    color: #444;
+}
+
+/* Clearable file checkbox area (Django image field) */
+form .clearable-file-input {
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: #444;
+}
+
+/* Buttons container */
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+/* Save button */
+.btn-save {
+    background-color: var(--primary-purple);
+    color: white;
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn-save:hover {
+    background-color: #7c5ac2;
+}
+
+/* Cancel button */
+.btn-cancel {
+    background-color: #cccccc;
+    color: #333;
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+}
+
+.btn-cancel:hover {
+    background-color: #b3b3b3;
+}
+
+
+.clearable-file-wrapper {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 0.5rem 0 1.5rem;
+}
+
+.clearable-file-wrapper input[type="checkbox"] {
+    transform: scale(1.2);
+    margin: 0;
+}
+
+.clearable-file-wrapper label {
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+input#image-clear_id {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 2rem 0 1.5rem;
+    max-width: 30px;
+
+}
+
+/* Responsive tweak */
+@media (max-width: 500px) {
+    .form-buttons {
+        flex-direction: column;
+    }
+}
