@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-
 {% load static %}
 
 {% block extra_css %}
@@ -11,25 +10,43 @@
     <h2 id="my-orders-heading">My Orders</h2>
 
     {% if orders %}
-    <ul>
-        {% for order in orders %}
-        <li>
-            <strong>{{ order.item.title }}</strong><br>
-            Price: £{{ order.price }}<br>
-            {% if order.is_offer %}
-            Offer Status: <strong>{{ order.status|title }}</strong><br>
-            {% endif %}
-            Date: {{ order.created_at|date:"M d, Y H:i" }}<br><br>
-
-            <form action="{% url 'delete_order' order.id %}" method="POST" style="display:inline;">
-                {% csrf_token %}
-                <button type="submit" aria-label="Delete order for {{ order.item.title }}">Delete</button>
-            </form>
-
-            <hr>
-        </li>
-        {% endfor %}
-    </ul>
+    <table aria-describedby="my-orders-heading">
+        <thead>
+            <tr>
+                <th scope="col">Item</th>
+                <th scope="col">Price (£)</th>
+                <th scope="col">Offer Status</th>
+                <th scope="col">Date</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+            <tr>
+                <td>
+                    <a href="{% url 'item_detail' order.item.id %}" aria-label="View item {{ order.item.title }}">
+                        {{ order.item.title }}
+                    </a>
+                </td>
+                <td>{{ order.price }}</td>
+                <td>
+                    {% if order.is_offer %}
+                    {{ order.status|title }}
+                    {% else %}
+                    Direct Purchase
+                    {% endif %}
+                </td>
+                <td>{{ order.created_at|date:"M d, Y H:i" }}</td>
+                <td>
+                    <form action="{% url 'delete_order' order.id %}" method="POST" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" aria-label="Delete order for {{ order.item.title }}">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
     {% else %}
     <p>You haven’t made any purchases or offers yet.</p>
     {% endif %}
