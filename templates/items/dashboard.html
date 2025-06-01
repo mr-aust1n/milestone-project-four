@@ -1,37 +1,48 @@
-<!-- Dashboard -->
 {% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+{% endblock %}
 
 {% block content %}
 <h2 aria-label="Your Listed Items">My Listings</h2>
 
 {% if my_items %}
-<ul>
+<div class="dashboard-grid">
     {% for item in my_items %}
-    <li>
-        <strong>{{ item.title }}</strong><br>
-        £{{ item.price }}<br>
-        <p><strong>Available:</strong> {{ item.quantity }}</p> <!-- ✅ Quantity shown here -->
-
-        {% if item.image %}
-        <img src="{{ item.image.url }}" alt="{{ item.title }}" width="150">
-        {% endif %}
-        <p>{{ item.description|truncatewords:20 }}</p>
-        <a href="{% url 'edit_item' item.id %}">Edit</a> |
-        <a href="{% url 'delete_item' item.id %}">Delete</a>
-        <hr>
-    </li>
+    <div class="item-card">
+        <div class="item-image-wrapper">
+            {% if item.image %}
+            <img src="{{ item.image.url }}" alt="{{ item.title }}">
+            {% endif %}
+        </div>
+        <div class="item-info">
+            <h3 class="item-title">{{ item.title }}</h3>
+            <p><strong>£{{ item.price }}</strong></p>
+            <p>Available: {{ item.quantity }}</p>
+            <p>{{ item.description|truncatewords:20 }}</p>
+            <div class="item-actions">
+                <a href="{% url 'edit_item' item.id %}">Edit</a> |
+                <a href="{% url 'delete_item' item.id %}">Delete</a>
+            </div>
+        </div>
+    </div>
     {% endfor %}
-</ul>
+</div>
+{% else %}
+<p>You haven't listed any items yet.</p>
+{% endif %}
+
 
 <hr>
-<h3>Offers Received</h3>
 
+<h3>Offers Received</h3>
 {% if offers %}
-<ul>
+<ul class="offer-list">
     {% for offer in offers %}
     <li>
-        <strong>{{ offer.item.title }}</strong> —
-        £{{ offer.price }} from {{ offer.buyer.username }}<br>
+        <strong>{{ offer.item.title }}</strong> — £{{ offer.price }} from {{ offer.buyer.username }}<br>
         <em>{{ offer.offer_note }}</em><br>
         Submitted on {{ offer.created_at|date:"M d, Y H:i" }}<br>
 
@@ -47,7 +58,6 @@
         {% else %}
         <p>Status: <strong>{{ offer.status|title }}</strong></p>
         {% endif %}
-        <hr>
     </li>
     {% endfor %}
 </ul>
@@ -56,10 +66,10 @@
 {% endif %}
 
 <hr>
-<h3>Messages Received</h3>
 
+<h3>Messages Received</h3>
 {% if messages %}
-<ul>
+<ul class="message-list">
     {% for msg in messages %}
     <li>
         <strong>{{ msg.sender.username }}</strong> →
@@ -73,7 +83,4 @@
 <p>No messages received yet.</p>
 {% endif %}
 
-{% else %}
-<p>You haven't listed any items yet.</p>
-{% endif %}
 {% endblock %}
