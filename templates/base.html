@@ -44,17 +44,19 @@
 
                         {% if user.is_authenticated %}
                         <li><a href="{% url 'my_orders' %}">My Orders</a></li>
-                        {% endif %}
+                        <li><a href="{% url 'my_offers' %}">My Offers</a></li>
 
-                        {% if user.is_authenticated and user.is_superuser %}
+                        {% if user.is_superuser %}
                         <li><a href="/admin/">Admin</a></li>
                         {% endif %}
 
-                        {% if user.is_authenticated %}
-                        <li><a href="{% url 'my_offers' %}">My Offers</a></li>
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                        {% else %}
+                        <li><a href="{% url 'login' %}">Login</a></li>
                         {% endif %}
                     </ul>
                 </nav>
+
 
                 <div class="notification-bell">
                     <button id="bellButton" aria-label="View and toggle notifications">🔔</button>
@@ -92,6 +94,8 @@
                             {% endfor %}
                         </ul>
                         {% endif %}
+
+
                     </div>
                 </div>
             </div>
