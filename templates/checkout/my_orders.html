@@ -19,7 +19,13 @@
             {% if order.is_offer %}
             Offer Status: <strong>{{ order.status|title }}</strong><br>
             {% endif %}
-            Date: {{ order.created_at|date:"M d, Y H:i" }}
+            Date: {{ order.created_at|date:"M d, Y H:i" }}<br><br>
+
+            <form action="{% url 'delete_order' order.id %}" method="POST" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" aria-label="Delete order for {{ order.item.title }}">Delete</button>
+            </form>
+
             <hr>
         </li>
         {% endfor %}
