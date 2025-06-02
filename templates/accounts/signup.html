@@ -1,5 +1,11 @@
 <!-- Sign Up -->
 {% extends "base.html" %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/signup.css' %}">
+{% endblock %}
+
+
 
 {% block content %}
 <main role="main" aria-labelledby="signup-title">
