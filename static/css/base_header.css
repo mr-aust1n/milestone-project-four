@@ -49,6 +49,7 @@
     border-top: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
     /* Drop shadow */
 }
 
@@ -131,10 +132,12 @@
         flex-direction: row;
         background: none;
         border: none;
+        align-items: center;
     }
 
     .site-nav ul li {
         border: none;
+
     }
 
     .site-nav ul li a {

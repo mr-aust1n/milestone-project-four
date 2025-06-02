@@ -50,6 +50,12 @@
                             </form>
                         </li>
 
+                        {% if user.is_authenticated %}
+                        <span> {{ user.username }}</span> |
+                        <a href="{% url 'logout' %}">Logout</a>
+                        {% else %}
+                        <a href="{% url 'login' %}">Login</a> {% endif %}
+
                         {% else %}
                         <li><a href="{% url 'login' %}" aria-label="Login to your account">Login</a></li>
                         <li><a href="{% url 'signup' %}" aria-label="Register a new account">Sign Up</a></li>
@@ -66,6 +72,7 @@
                         {% if notifications.messages %}
                         <p><strong>Messages</strong></p>
                         <ul>
+
                             {% for msg in notifications.messages %}
                             <li>{{ msg.sender.username }} →
                                 <a href="{% url 'item_detail' msg.item.id %}">{{ msg.item.title }}</a>
