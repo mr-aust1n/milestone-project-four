@@ -193,3 +193,25 @@ This section outlines the manual testing performed for the **.env**.  This makes
 ![Email Message Received](doc_images/EmailMessage.png) 
 
 
+
+## Password Reset - Manual Testing
+
+| Test Case                                 | Expected Result                                                               | Status   |
+|-------------------------------------------|--------------------------------------------------------------------------------|----------|
+| Submit valid email for password reset     | Success message shown even if email not registered (security measure)         | ✅ Pass  |
+| Submit invalid email format               | Form validation error displayed                                               | ✅ Pass  |
+| Receive password reset email              | Email arrives with reset link                                                 | ✅ Pass  |
+| Open reset link (valid token)             | Password reset form loads correctly                                           | ✅ Pass  |
+| Submit new valid password                 | Success message shown after password update                                   | ✅ Pass  |
+| Login with new password                   | Successful login                                                              | ✅ Pass  |
+| Login with old password                   | Login fails (old password no longer valid)                                    | ✅ Pass  |
+| Reuse reset link after use                | Link invalid or expired error displayed                                       | ✅ Pass  |
+| Accessibility (form, labels, navigation)  | Fully accessible via keyboard and screen readers                              | ✅ Pass  |
+
+ 
+![Email Enter](doc_images/PasswordForgot.png) 
+![Email Received](doc_images/PasswordEmail.png) 
+![Message to check email](doc_images/CheckEmail.png) 
+![New Password Enter](doc_images/NewPassword.png) 
+![Reset Complete](doc_images/ResetComplete.png) 
+
