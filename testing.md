@@ -9,8 +9,7 @@
 ![Email Message Received](doc_images/localSetup.png) 
 
 
-# Manual Testing: Item Detail View
-
+# Manual Testing Below
 This section outlines the manual testing performed for the **Item Detail View**.
 
 ## ✅ Test Cases
@@ -214,4 +213,24 @@ This section outlines the manual testing performed for the **.env**.  This makes
 ![Message to check email](doc_images/CheckEmail.png) 
 ![New Password Enter](doc_images/NewPassword.png) 
 ![Reset Complete](doc_images/ResetComplete.png) 
+
+# Automated Testing Below
+
+
+- Unit Testing - items/tests.py
+- Test Module	Test Case	Description	Status
+items/tests.py	test_create_item()	Verifies that an Item object can be created and saved to the database successfully with valid data	✅ Pass
+Test Details:
+
+Creates an item with valid title, description, category, price, quantity, and seller.
+Confirms the title of the item was correctly saved to the database.
+Confirms the Django ORM is functioning as expected for the Item model.
+
+- Command Used
+- python manage.py test items
+
+- Output
+![Items Test](doc_images/itemsTest.png) 
+
+
 
