@@ -216,7 +216,9 @@ This section outlines the manual testing performed for the **.env**.  This makes
 
 # Automated Testing Below
 
-### Items App Tests
+### Items Tests
+
+- Command: 'python manage.py test items'
 
 | Test Case         | Expected Result                     | Status   |
 |-------------------|--------------------------------------|----------|
@@ -228,7 +230,10 @@ This section outlines the manual testing performed for the **.env**.  This makes
 ![Items Test](doc_images/itemsTest.png) 
 
 
-### Checkout App Tests
+### Checkout Test
+
+- Command: 'python manage.py test checkout'
+
 
 | Test Case             | Expected Result                                  | Status   |
 |-----------------------|---------------------------------------------------|----------|
@@ -237,6 +242,28 @@ This section outlines the manual testing performed for the **.env**.  This makes
 | Verify Buyer Username | Buyer username is correctly assigned to order    | ✅ Pass   |
 | Verify Item Linked    | Order is linked to correct item                  | ✅ Pass 
 
-![Items Test](doc_images/checkoutTest.png) 
+![Checkout Test](doc_images/checkoutTest.png) 
 
 
+
+## Account Test
+
+- Command: 'python manage.py test accounts'
+
+| App      | Tests Run | Description                                 | Status   |
+|----------|-----------|----------------------------------------------|----------|
+| `items`  | 1         | Test homepage loads correctly               | ✅ Pass  |
+| `checkout` | 2      | Test purchase flow, Stripe checkout session  | ✅ Pass  |
+| `accounts` | 3      | Signup, Login, User creation functionality    | ✅ Pass  |
+
+![Accounts Test](doc_images/accountsTest.png) 
+
+**Total tests run:** 6  
+**Test framework used:** Django built-in `unittest`
+
+### Running Tests
+
+To run all tests:
+
+```bash
+python manage.py test
