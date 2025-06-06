@@ -216,21 +216,27 @@ This section outlines the manual testing performed for the **.env**.  This makes
 
 # Automated Testing Below
 
+### Items App Tests
 
-- Unit Testing - items/tests.py
-- Test Module	Test Case	Description	Status
-items/tests.py	test_create_item()	Verifies that an Item object can be created and saved to the database successfully with valid data	✅ Pass
-Test Details:
+| Test Case         | Expected Result                     | Status   |
+|-------------------|--------------------------------------|----------|
+| Item String       | `__str__` returns item title        | ✅ Pass   |
+| Item Price        | Item price saved correctly          | ✅ Pass   |
+| Item Quantity     | Item quantity saved correctly       | ✅ Pass   |
+| Item Seller       | Item seller assigned correctly      | ✅ Pass   |
 
-Creates an item with valid title, description, category, price, quantity, and seller.
-Confirms the title of the item was correctly saved to the database.
-Confirms the Django ORM is functioning as expected for the Item model.
-
-- Command Used
-- python manage.py test items
-
-- Output
 ![Items Test](doc_images/itemsTest.png) 
 
+
+### Checkout App Tests
+
+| Test Case             | Expected Result                                  | Status   |
+|-----------------------|---------------------------------------------------|----------|
+| Create Order          | Order is successfully created in database        | ✅ Pass   |
+| Verify Order Price    | Order price matches the item price               | ✅ Pass   |
+| Verify Buyer Username | Buyer username is correctly assigned to order    | ✅ Pass   |
+| Verify Item Linked    | Order is linked to correct item                  | ✅ Pass 
+
+![Items Test](doc_images/checkoutTest.png) 
 
 
