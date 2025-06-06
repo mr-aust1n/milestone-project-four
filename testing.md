@@ -216,7 +216,9 @@ This section outlines the manual testing performed for the **.env**.  This makes
 
 # Automated Testing Below
 
-### Items Tests
+### Model Unit Tests 
+
+### Items Model Test
 
 - Command: 'python manage.py test items'
 
@@ -230,7 +232,7 @@ This section outlines the manual testing performed for the **.env**.  This makes
 ![Items Test](doc_images/itemsTest.png) 
 
 
-### Checkout Test
+### Checkout Model Test
 
 - Command: 'python manage.py test checkout'
 
@@ -246,7 +248,7 @@ This section outlines the manual testing performed for the **.env**.  This makes
 
 
 
-## Account Test
+## Account Model Test
 
 - Command: 'python manage.py test accounts'
 
@@ -258,12 +260,64 @@ This section outlines the manual testing performed for the **.env**.  This makes
 
 ![Accounts Test](doc_images/accountsTest.png) 
 
-**Total tests run:** 6  
+**Total tests run:** 5 
 **Test framework used:** Django built-in `unittest`
 
 ### Running Tests
 
-To run all tests:
+To run all tests: 'python manage.py test'
 
-```bash
-python manage.py test
+
+
+
+### Form Unit Tests 
+
+## Form Items Tests 
+
+During development, one failure was encountered during form validation testing which was then resolved.
+
+### Test Results
+
+| Test Case             | Expected Result                                                 | Status   |
+|------------------------|------------------------------------------------------------------|----------|
+| Valid form submission  | Form is valid with correct data (title, description, price, etc)| ✅ Pass  |
+| Missing title          | Form invalid when title is missing                              | ✅ Pass  |
+| Invalid price (zero)   | Form invalid when price is zero or less                          | ❌ Fail |
+| Invalid price (zero)   | Form invalid when price is zero or less                          | ✅ Pass (after fix) |
+
+### Failure Encountered  
+
+- Initially, the `test_invalid_price_form` test was failing because the form allowed prices of zero or negative values. The form was returning valid even for invalid prices.
+
+**Error message:**
+
+![Failed Test](doc_images/itemsTestFormsFail.png) 
+
+**Fix**
+
+- A model-level validator was added to the `price` field inside `items/models.py` to enforce price must be greater than zero:
+
+
+[from django.core.validators import MinValueValidator
+
+price = models.DecimalField(
+    max_digits=8,
+    decimal_places=2,
+    validators=[MinValueValidator(0.01)]
+)]
+
+- I reran the test and all three tests passed.
+
+![Failed Test](doc_images/itemsTestFormsPass.png) 
+
+
+- A extra layer of security was added in ItemForm to make sure the price does not go below zero"
+
+[def clean_price(self):
+        price = self.cleaned_data.get('price')
+        if price <= 0:
+            raise forms.ValidationError("Price must be greater than zero.")
+        return price]
+
+
+

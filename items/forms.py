@@ -1,4 +1,5 @@
-# items / forms.py
+# items/forms.py
+
 from django import forms
 
 from .models import Item, Message
@@ -8,6 +9,10 @@ class ItemForm(forms.ModelForm):
     class Meta:
         model = Item
         fields = ["title", "description", "category", "price", "image", "quantity"]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["price"].min_value = 0.01
 
 
 class MessageForm(forms.ModelForm):
