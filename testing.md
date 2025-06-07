@@ -320,4 +320,35 @@ price = models.DecimalField(
         return price]
 
 
+        
+
+
+
+## Form Checkout Tests 
+
+| Test Case                     | Expected Result                                                  | Status  |
+|--------------------------------|-------------------------------------------------------------------|---------|
+| Submit valid offer price       | Form is valid when price is positive                             | ✅ Pass |
+| Submit valid offer with note   | Form is valid when optional note is provided                     | ✅ Pass |
+| Submit missing offer price     | Form is invalid if price is missing                               | ✅ Pass |
+| Submit zero or negative price  | Form is invalid if price is zero or negative                      | ✅ Pass After Fix |
+
+### Failure Found During Testing
+
+- **Fail:** `test_invalid_negative_offer_price` failed originally because negative prices were accepted.
+- **Cause:** No validator on `offer_price` in `OfferForm`.
+- **Fix:** Added `validators=[MinValueValidator(0.01)]` to the `offer_price` field in `checkout/forms.py` to enforce price must be at least 0.01.
+
+
+[offer_price = forms.DecimalField(
+    max_digits=10,
+    decimal_places=2,
+    label="Your Offer (£)",
+    validators=[MinValueValidator(0.01)]]
+
+
+![Failed Test](doc_images/checkoutTestFormFail.png) 
+![PassTest](doc_images/checkoutTestFormPass.png) 
+
+
 
