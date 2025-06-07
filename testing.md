@@ -436,3 +436,19 @@ price = models.DecimalField(
 
 ![FailTest](doc_images/accountsViewsFail.png) 
 ![PassTest](doc_images/accountsViewsPass.png) 
+
+
+## Checkout Views Tests
+
+
+- command: 'python manage.py test checkout.tests_orders'
+
+
+| Test Case                           | Expected Result                                         | Status   |
+|-------------------------------------|----------------------------------------------------------|----------|
+| Create Checkout Session (Valid)     | Stripe session created and user redirected to Stripe URL | ✅ Pass  |
+| Payment Success Reduces Quantity    | Item quantity reduced by 1 after successful payment      | ✅ Pass  |
+| Payment Marks Item Sold (if 0 left) | Item marked as sold when quantity reaches zero           | ✅ Pass  |
+
+
+![PassTest](doc_images/accountsViewsPass.png) 
