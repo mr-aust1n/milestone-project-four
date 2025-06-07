@@ -274,6 +274,8 @@ To run all tests: 'python manage.py test'
 
 ## Form Items Tests 
 
+- Command: 'python manage.py test items.tests_forms'
+
 During development, one failure was encountered during form validation testing which was then resolved.
 
 ### Test Results
@@ -326,6 +328,8 @@ price = models.DecimalField(
 
 ## Form Checkout Tests 
 
+- Command: 'python manage.py test checkout.tests_forms'
+
 | Test Case                     | Expected Result                                                  | Status  |
 |--------------------------------|-------------------------------------------------------------------|---------|
 | Submit valid offer price       | Form is valid when price is positive                             | ✅ Pass |
@@ -351,4 +355,20 @@ price = models.DecimalField(
 ![PassTest](doc_images/checkoutTestFormPass.png) 
 
 
+##  Form Accounts Tests
+
+- Command: 'python manage.py test accounts.tests_forms'
+### Test Summary
+
+| Test Case                    | Description                                  | Status |
+|------------------------------|----------------------------------------------|--------|
+| Valid UserCreationForm       | Form accepts valid username & matching passwords | ✅ Pass |
+| Password mismatch            | Form rejects if password1 and password2 don’t match | ✅ Pass |
+| Blank username               | Form rejects if username is left blank      | ✅ Pass |
+
+### Notes:
+- All tests passed first time.
+- These tests confirm that Django’s built-in `UserCreationForm` is functioning as expected for valid and invalid inputs.
+
+![PassTest](doc_images/AccoountsFormTestPass.png) 
 
