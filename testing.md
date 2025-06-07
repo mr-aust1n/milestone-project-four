@@ -412,4 +412,27 @@ price = models.DecimalField(
 ![FailTest](doc_images/CheckoutViewsFail.png) 
 ![PassTest](doc_images/CheckoutViewsPass.png) 
 
+## Accounts Views Tests
 
+- Command: 'python manage.py test checkout.tests_views'
+
+
+
+## Accounts Views Tests
+
+- Command: 'python manage.py test checkout.tests_views'
+
+
+| Test Case               | Purpose                               | Status |
+|--------------------------|----------------------------------------|--------|
+| Signup Page Loads        | Ensures signup page is accessible      | ✅ Pass |
+| Successful Registration  | Successfully registers new users      | ✅ Pass |
+| Logout Redirect          | Logs out and redirects to homepage     | ✅ Pass |
+
+#### ⚠ Issue Encountered & Fix Applied:
+- **Fail:** Logout view initially returned 405 Method Not Allowed.
+- **Fix:** Correct logout path and ensured proper HTTP method used in `base.html`.
+
+
+![FailTest](doc_images/accountsViewsFail.png) 
+![PassTest](doc_images/accountsViewsPass.png) 
