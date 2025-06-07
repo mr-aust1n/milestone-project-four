@@ -370,5 +370,25 @@ price = models.DecimalField(
 - All tests passed first time.
 - These tests confirm that Django’s built-in `UserCreationForm` is functioning as expected for valid and invalid inputs.
 
-![PassTest](doc_images/AccoountsFormTestPass.png) 
+![PassTest](doc_images/AccountsFormTestPass.png) 
+
+
+
+
+
+## Items Views Tests
+
+- Command: 'python manage.py test items.tests_views'
+
+| Test Case                  | Expected Result              | Status  |
+|----------------------------|--------------------------------|---------|
+| Home page loads            | Status code 200               | ✅ Pass  |
+| Add Item view loads        | Form rendered correctly       | ✅ Pass  |
+| Dashboard loads            | User-specific data displayed  | ✅ Pass  |
+
+![PassTest](doc_images/itemsTests1.png) 
+
+
+
+
 
