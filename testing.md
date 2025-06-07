@@ -391,4 +391,25 @@ price = models.DecimalField(
 
 
 
+## Checkout Views Tests
+
+- Command: 'python manage.py test checkout.tests_views'
+
+
+| Test Case                  | Expected Result                                       | Status |
+|----------------------------|-------------------------------------------------------|--------|
+| test_make_offer_get        | Offer page loads correctly for buyer (HTTP 200)       | ✅ Pass |
+| test_make_offer_post_valid | Valid offer creates an order and shows confirmation   | ✅ Pass |
+| test_make_offer_redirect_if_invalid | Redirect if trying to offer on sold item (HTTP 302) | ✅ Pass |
+
+#### Failure History:
+
+- **Failure:** Initially, `test_make_offer_get` and `test_make_offer_post_valid` failed because both returned HTTP 302 instead of 200.
+- **Cause:** The tests were not simulating a logged-in user, so the offer page was redirecting to login (due to `@login_required` decorator).
+- **Fix:** We added authentication (`self.client.login(...)`) in the test `setUp()` method to simulate a logged-in user, ensuring the test client could access protected views correctly.
+
+
+![FailTest](doc_images/CheckoutViewsFail.png) 
+![PassTest](doc_images/CheckoutViewsPass.png) 
+
 
