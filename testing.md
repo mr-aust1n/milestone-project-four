@@ -456,7 +456,7 @@ price = models.DecimalField(
 
 
 
-### Standard User Permission Unit Tests 
+### Standard User Permissions Unit Tests 
 
 - Command: 'python manage.py test accounts.tests_views.AccountsViewsTest.test_logout_redirects'
 
@@ -472,3 +472,16 @@ price = models.DecimalField(
 ![FailTest](doc_images/permissionTestFail.png) 
 ![PassTest](doc_images/permissionTestPass.png) 
 
+
+### Admin Permissions Unit Tests 
+
+- `Command: 'python manage.py test accounts.test_admin_permissions'
+
+| Test Case                          | Expected Result                                        | Status   |
+|------------------------------------|--------------------------------------------------------|----------|
+| Dashboard Redirect (Anonymous)     | Anonymous user redirected to login page when accessing dashboard | ✅ Pass  |
+| Logout Redirect Test (Initial Fail)| Test failed due to HTTP 405 Method Not Allowed (used GET instead of POST) | ⚠ Fail  |
+| Logout Redirect Test (After Fix)   | Updated test to use POST request; test now passes with HTTP 302 redirect | ✅ Pass  |
+| Admin Access Denied (Non-Admin)    | Logged-in regular user unable to access /admin/ page (permission denied) | ✅ Pass  |
+
+![PassTest](doc_images/adminTestPass.png) 
