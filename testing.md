@@ -452,3 +452,23 @@ price = models.DecimalField(
 
 
 ![PassTest](doc_images/accountsViewsPass.png) 
+
+
+
+
+### Standard User Permission Unit Tests 
+
+- Command: 'python manage.py test accounts.tests_views.AccountsViewsTest.test_logout_redirects'
+
+
+| Test Case                          | Expected Result                                        | Status   |
+|------------------------------------|--------------------------------------------------------|----------|
+| Dashboard Redirect (Anonymous)     | Anonymous user redirected to login page when accessing dashboard | ✅ Pass  |
+| Logout Redirect Test (Initial Fail)| Test failed due to HTTP 405 Method Not Allowed  | ❌ Fail  |
+| Logout Redirect Test (After Fix)   | Updated test to use POST request; test now passes with HTTP 302 redirect | ✅ Pass  |
+
+- FIX Swapped from GET to POST for my security -  ✅ Pass
+
+![FailTest](doc_images/permissionTestFail.png) 
+![PassTest](doc_images/permissionTestPass.png) 
+
