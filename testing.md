@@ -441,7 +441,7 @@ price = models.DecimalField(
 ## Checkout Views Tests
 
 
-- command: 'python manage.py test checkout.tests_orders'
+- Command: 'python manage.py test checkout.tests_orders'
 
 
 | Test Case                           | Expected Result                                         | Status   |
@@ -508,3 +508,17 @@ price = models.DecimalField(
 
 
 ![PassTest](doc_images/errorTest.png) 
+
+
+
+## Form Validation Tests
+
+| Test Case                                | Expected Result                                                       | Status   |
+|------------------------------------------|------------------------------------------------------------------------|----------|
+| ItemForm missing required fields         | Form is invalid; 'title' and 'price' fields return validation errors  | ✅ Pass  |
+
+
+- Command: 'python manage.py test items.test_forms'
+
+
+![PassTest](doc_images/formTestPass.png) 
