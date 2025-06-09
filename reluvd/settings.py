@@ -15,6 +15,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 import os
 from pathlib import Path
 
+import dj_database_url
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -31,9 +32,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-w4^x!95$9tw4upegxaih!!e7nj+!yxtimde5(47#q3=gcjnkke"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+DEBUG = "DEVELOPMENT" in os.environ
 
 
 # Application definition
@@ -46,6 +45,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "checkout",
+    "cloudinary",
+    "cloudinary_storage",
     # ReLuvd custom apps
     "items",
     "orders",
@@ -54,6 +55,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "whitenoise.middleware.WhiteNoiseMiddleware"
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -87,11 +89,10 @@ WSGI_APPLICATION = "reluvd.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+import dj_database_url
+
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+    "default": dj_database_url.parse(os.environ.get("DATABASE_URL"), conn_max_age=600)
 }
 
 
@@ -166,8 +167,16 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_PUBLIC_KEY")
 STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY")
 
+# Allowed Hosts
+ALLOWED_HOSTS = ["reluvd.herokuapp.com", "localhost"]
+
 # Trusted Local IPs
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", "192.168.86.38"]
 
 # Logout settings
 LOGOUT_REDIRECT_URL = "home"
+
+
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
