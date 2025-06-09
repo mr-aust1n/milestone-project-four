@@ -498,3 +498,13 @@ price = models.DecimalField(
 ![PassTest](doc_images/urlTest.png) 
 
 
+## Error Handling Tests
+
+- Command: 'python manage.py test accounts.test_error_handling'
+
+| Test Case                         | Expected Result                                           | Status   |
+|-----------------------------------|------------------------------------------------------------|----------|
+| Invalid URL returns 404 response  | Visiting a non-existent URL returns a 404 (not a crash)   | ✅ Pass  |
+
+
+![PassTest](doc_images/errorTest.png) 
