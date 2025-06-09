@@ -485,3 +485,16 @@ price = models.DecimalField(
 | Admin Access Denied (Non-Admin)    | Logged-in regular user unable to access /admin/ page (permission denied) | ✅ Pass  |
 
 ![PassTest](doc_images/adminTestPass.png) 
+
+
+## URL Resolution Tests
+
+- Commands: 'python manage.py test accounts.test_urls'
+
+| Test Case                         | Expected Result                                              | Status   |
+|-----------------------------------|---------------------------------------------------------------|----------|
+| Dashboard URL resolves correctly  | Named URL 'dashboard' resolves to the correct dashboard view | ✅ Pass  |
+
+![PassTest](doc_images/urlTest.png) 
+
+
