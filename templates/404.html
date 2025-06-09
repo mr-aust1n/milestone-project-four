@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/404.css' %}">
+
+{% block content %}
+<main class="error-container" role="main" aria-labelledby="not-found-title">
+    <img src="{% static 'images/404.png' %}" alt="Page not found illustration" />
+
+    <h1 id="not-found-title">Oops! Page Not Found</h1>
+    <p>The page you’re looking for doesn’t exist or has been moved.</p>
+    <a href="{% url 'home' %}" class="btn btn-primary" aria-label="Return to homepage">Return Home</a>
+</main>
+{% endblock %}
