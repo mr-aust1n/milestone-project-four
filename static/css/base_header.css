@@ -31,6 +31,12 @@
     border: none;
     font-size: 2rem;
     cursor: pointer;
+    color: black;
+    margin-right: 10px;
+}
+
+.nav-toggle:hover {
+
     color: var(--primary-red);
 }
 
