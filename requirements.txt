@@ -5,6 +5,7 @@ cloudinary==1.44.0
 dj-database-url==3.0.0
 Django==5.2
 django-cloudinary-storage==0.3.0
+Faker==37.4.0
 gunicorn==23.0.0
 idna==3.10
 packaging==25.0
@@ -16,5 +17,6 @@ six==1.17.0
 sqlparse==0.5.3
 stripe==12.1.0
 typing_extensions==4.13.2
+tzdata==2025.2
 urllib3==2.4.0
 whitenoise==6.9.0
