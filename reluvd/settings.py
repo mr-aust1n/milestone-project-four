@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 import os
+import re
 from pathlib import Path
 
 import dj_database_url
@@ -20,9 +21,18 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+SECRET_KEY = "django-insecure-w4^x!95$9tw4upegxaih!!e7nj+!yxtimde5(47#q3=gcjnkke"
+DEBUG = "DEVELOPMENT" in os.environ
+
+# ✅ Move DATABASE_URL fix ABOVE DATABASES config:
+DATABASE_URL = os.environ.get("DATABASE_URL")
+
+if DATABASE_URL and DATABASE_URL.startswith("postgres://"):
+    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
+
+DATABASES = {"default": dj_database_url.parse(DATABASE_URL, conn_max_age=600)}
 
 
 # Quick-start development settings - unsuitable for production
@@ -91,9 +101,12 @@ WSGI_APPLICATION = "reluvd.wsgi.application"
 
 import dj_database_url
 
-DATABASES = {
-    "default": dj_database_url.parse(os.environ.get("DATABASE_URL"), conn_max_age=600)
-}
+DATABASES = {"default": dj_database_url.parse(DATABASE_URL, conn_max_age=600)}
+
+DATABASE_URL = os.environ.get("DATABASE_URL")
+
+if DATABASE_URL and DATABASE_URL.startswith("postgres://"):
+    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
 
 
 # Password validation
