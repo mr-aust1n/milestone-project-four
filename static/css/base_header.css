@@ -35,10 +35,6 @@
     margin-right: 10px;
 }
 
-.nav-toggle:hover {
-
-    color: var(--primary-red);
-}
 
 .site-nav ul {
     list-style: none;
@@ -156,5 +152,9 @@
 
     .site-nav ul {
         box-shadow: none;
+    }
+
+    .button {
+        padding-right: 10px;
     }
 }
