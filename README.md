@@ -4,4 +4,9 @@ milestone-project-four
 
 
 
-added nudge 
+Users
+
+Super User
+
+- Command: 'heroku run python manage.py createsuperuser'
+ 
