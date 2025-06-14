@@ -542,5 +542,8 @@ price = models.DecimalField(
 | Payment confirmation email sent       | Email confirmation sent to user after successful purchase (if enabled)          | ✅ Pass  |
 | Secure HTTPS connection enforced      | Payment page always uses HTTPS, no insecure elements present                    | ✅ Pass  |
 
+![Payment Success](doc_images/paymentSucess.png) 
+![Invalid Card](doc_images/invalidCard.png) 
+![Email Order](doc_images/emailOrder.png) 
 
-paymentSucess.png
+
