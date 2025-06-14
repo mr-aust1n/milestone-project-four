@@ -541,3 +541,6 @@ price = models.DecimalField(
 | Duplicate payment prevented           | Double-clicking purchase button does not result in duplicate orders             | ✅ Pass  |
 | Payment confirmation email sent       | Email confirmation sent to user after successful purchase (if enabled)          | ✅ Pass  |
 | Secure HTTPS connection enforced      | Payment page always uses HTTPS, no insecure elements present                    | ✅ Pass  |
+
+
+paymentSucess.png

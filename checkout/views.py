@@ -4,6 +4,7 @@ import stripe
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
 from django.shortcuts import get_object_or_404, redirect, render
 
 from items.models import Item
@@ -18,7 +19,7 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 def create_checkout_session(request, item_id):
     item = get_object_or_404(Item, pk=item_id)
 
-    #  Prevent checkout if out of stock
+    # Prevent checkout if out of stock
     if item.quantity < 1:
         messages.error(request, "Sorry, this item is out of stock.")
         return redirect("item_detail", item_id=item.id)
@@ -62,10 +63,19 @@ def payment_success(request, item_id):
     item.save()
 
     # Create the order record
-    Order.objects.create(
+    order = Order.objects.create(
         item=item,
         buyer=request.user,
         price=item.price,
+    )
+
+    # Send confirmation email
+    send_mail(
+        subject="ReLuvd - Order Confirmation",
+        message=f"Hi {request.user.username},\n\nThank you for your order of '{item.title}'. Your payment has been received.\n\nRegards,\nThe ReLuvd Team",
+        from_email=None,  # Uses DEFAULT_FROM_EMAIL from settings.py
+        recipient_list=[request.user.email],
+        fail_silently=False,
     )
 
     return render(request, "checkout/success.html", {"item": item})
