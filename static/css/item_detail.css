@@ -1,5 +1,5 @@
 /* =============================
-   ITEM DETAIL PAGE - FULL CSS
+   ITEM DETAIL PAGE
    ============================= */
 
 .item-detail-container {
@@ -11,28 +11,14 @@
     gap: 20px;
 }
 
-/* Image Styling */
-.item-image-wrapper {
-    max-width: 500px;
-    margin: 0 auto;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-
-    background-color: #fff;
-}
-
 .item-image-large {
     width: 100%;
-    max-width: 500px;
-    height: auto;
+    max-height: 500px;
     object-fit: cover;
     border-radius: 10px;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
-    margin: 0 auto;
 }
 
-/* Item Info Styling */
 .item-info-section {
     background: #fff;
     border: 1px solid #eee;
@@ -59,7 +45,6 @@
     color: #333;
 }
 
-/* Buttons */
 .buy-button {
     display: inline-block;
     background-color: var(--primary-purple);
@@ -73,58 +58,13 @@
     margin-top: 20px;
 }
 
-button.buy-button {
-    margin: 20px 0px;
-}
-
 .buy-button:hover {
     background-color: #6a1b9a;
+    /* darker purple hover */
 }
 
-.actions {
-    margin-top: 1rem;
-}
+/* Mobile First - Responsive */
 
-.actions .btn {
-    padding: 0.5rem 1.2rem;
-    border-radius: 6px;
-    font-weight: 600;
-    text-decoration: none;
-    margin-right: 0.5rem;
-}
-
-.actions .edit-btn {
-    background-color: var(--primary-purple);
-    color: var(--text-light);
-}
-
-.actions .delete-btn {
-    background-color: var(--primary-red);
-    color: var(--text-light);
-}
-
-section.item-info-section {
-    display: table-caption;
-}
-
-/* Form button spacing globally */
-form button {
-    margin: 20px 0;
-}
-
-/* Message form tweaks */
-form textarea {
-    display: block;
-    width: 100%;
-    margin-bottom: 10px;
-}
-
-form button[type="submit"] {
-    display: block;
-    margin-left: 0;
-}
-
-/* Responsive layout for desktop */
 @media (min-width: 768px) {
     .item-detail-container {
         flex-direction: row;
