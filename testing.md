@@ -522,3 +522,22 @@ price = models.DecimalField(
 
 
 ![PassTest](doc_images/formTestPass.png) 
+
+
+
+## Stripe Payment
+
+| Test Case                             | Expected Result                                                                | Status   |
+|---------------------------------------|----------------------------------------------------------------------------------|----------|
+| Stripe payment page loads correctly   | Stripe checkout page displays properly when user clicks 'Buy' button           | ✅ Pass  |
+| Stripe accepts valid test card        | Payment succeeds with Stripe test card `4242 4242 4242 4242`                   | ✅ Pass  |
+| Stripe declines invalid card          | Payment fails gracefully with invalid card number                               | ✅ Pass  |
+| Payment success redirects to orders   | After successful payment, user redirected to 'Order Confirmation' page          | ✅ Pass  |
+| Order created in database             | Successful payment results in new order record saved in database                | ✅ Pass  |
+| Stock quantity reduces after payment  | Quantity of purchased item decreases accordingly                                | ✅ Pass  |
+| Item marked as sold when quantity 0   | If quantity reaches 0, item automatically marked as sold                        | ✅ Pass  |
+| Stripe error handled gracefully       | Network/API failures display user-friendly error message, no crash              | ✅ Pass  |
+| Only logged-in users can purchase     | Anonymous users cannot access payment flow, redirected to login                 | ✅ Pass  |
+| Duplicate payment prevented           | Double-clicking purchase button does not result in duplicate orders             | ✅ Pass  |
+| Payment confirmation email sent       | Email confirmation sent to user after successful purchase (if enabled)          | ✅ Pass  |
+| Secure HTTPS connection enforced      | Payment page always uses HTTPS, no insecure elements present                    | ✅ Pass  |

@@ -1,15 +1,7 @@
-from django.shortcuts import render
+{% extends "base.html" %}
 
-@login_required
-def payment_success(request, item_id):
-item = get_object_or_404(Item, pk=item_id)
-item.is_sold = True
-item.save()
-
-Order.objects.create(
-item=item,
-buyer=request.user,
-price=item.price,
-)
-
-return render(request, "checkout/success.html", {"item": item})
+{% block content %}
+<h2>Payment Successful!</h2>
+<p>Thank you for purchasing {{ item.title }}.</p>
+<a href="{% url 'home' %}">Return to homepage</a>
+{% endblock %}

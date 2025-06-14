@@ -635,6 +635,10 @@ Visual improvements to HTML Email templates
 
 Leave Reviews
 
+Auto remove the product from the home screen once a product is sold and not to wait until the item is removed by the seller.
+
+Add sold items to the 'my orders' page under sold items.
+
 
 ## Known Issues
 
