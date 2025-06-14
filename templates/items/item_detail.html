@@ -1,82 +1,89 @@
 {% extends "base.html" %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/item_detail.css' %}">
 
 {% block content %}
-<main role="main" aria-labelledby="item-title">
-    <h2 id="item-title">{{ item.title }}</h2>
-
-    <p><strong>Category:</strong> {{ item.get_category_display }}</p>
-    <p><strong>Price:</strong> £{{ item.price }}</p>
+<main role="main" class="item-detail-container" aria-labelledby="item-title">
 
     {% if item.image %}
-    <img src="{{ item.image.url }}" alt="{{ item.title }}" width="300">
+    <div class="item-image-wrapper">
+        <img src="{{ item.image.url }}" alt="{{ item.title }}" class="item-image-large">
+    </div>
     {% endif %}
 
-    <p>{{ item.description }}</p>
+    <div class="item-info-section">
 
-    {% if item.is_sold %}
-    <p><em>This item has been sold.</em></p>
-    {% endif %}
+        <h2 id="item-title" class="item-title">{{ item.title }}</h2>
 
-    {% if user.is_authenticated and request.user == item.seller %}
-    <p>
-        <a href="{% url 'edit_item' item.id %}">Edit</a> |
-        <a href="{% url 'delete_item' item.id %}">Delete</a>
-    </p>
-    {% endif %}
+        <p><strong>Category:</strong> {{ item.get_category_display }}</p>
+        <p class="item-price">£{{ item.price }}</p>
 
-    {% if user.is_authenticated and not item.is_sold and request.user != item.seller %}
-    {% if item.quantity > 0 %}
-    <form action="{% url 'buy_item' item.id %}" method="POST">
-        {% csrf_token %}
-        <button type="submit" aria-label="Buy {{ item.title }}">Buy Now</button>
-    </form>
-    {% else %}
-    <p><strong>Out of stock</strong></p>
-    {% endif %}
-    {% endif %}
+        <p class="item-description">{{ item.description }}</p>
 
+        {% if item.is_sold %}
+        <p><em>This item has been sold.</em></p>
+        {% endif %}
 
+        {% if user.is_authenticated and request.user == item.seller %}
+        <div class="actions">
+            <a href="{% url 'edit_item' item.id %}" class="btn edit-btn">Edit</a>
+            <a href="{% url 'delete_item' item.id %}" class="btn delete-btn">Delete</a>
+        </div>
+        {% endif %}
 
-    {% if user.is_authenticated and not item.is_sold and request.user != item.seller %}
-    <form action="{% url 'make_offer' item.id %}" method="get">
-        <button type="submit" aria-label="Make an offer for {{ item.title }}">Make an Offer</button>
-    </form>
-    {% endif %}
-
-    <hr>
-    <section aria-labelledby="messages-heading">
-        <h3 id="messages-heading">Messages</h3>
-
-        {% if user.is_authenticated and request.user != item.seller %}
-        <form method="POST" aria-label="Send a message to the seller">
+        {% if user.is_authenticated and not item.is_sold and request.user != item.seller %}
+        {% if item.quantity > 0 %}
+        <form action="{% url 'buy_item' item.id %}" method="POST">
             {% csrf_token %}
-            {{ form.non_field_errors }}
-            {{ form.message.errors }}
-            {{ form.message }}
-            <button type="submit">Send Message</button>
+            <button type="submit" class="buy-button" aria-label="Buy {{ item.title }}">Buy Now</button>
         </form>
+        {% else %}
+        <p><strong>Out of stock</strong></p>
+        {% endif %}
+        {% endif %}
+
+        {% if user.is_authenticated and not item.is_sold and request.user != item.seller %}
+        <form action="{% url 'make_offer' item.id %}" method="get">
+            <button type="submit" class="buy-button" aria-label="Make an offer for {{ item.title }}">Make an
+                Offer</button>
+        </form>
+        {% endif %}
+
         <p><strong>Available:</strong> {{ item.quantity }}</p>
 
+    </div>
 
-        <hr>
-        {% endif %}
-
-        {% if messages %}
-        <ul>
-            {% for msg in messages %}
-            <li>
-                <strong>{{ msg.sender.username }}</strong> ({{ msg.created_at|date:"M d, Y H:i" }}):<br>
-                {{ msg.message }}
-            </li>
-            {% endfor %}
-        </ul>
-        {% else %}
-        <p>No messages yet.</p>
-        {% endif %}
-    </section>
-
-
-
-    <p><a href="{% url 'home' %}">← Back to listings</a></p>
 </main>
+
+<hr>
+
+<section aria-labelledby="messages-heading" class="item-info-section">
+    <h3 id="messages-heading">Messages</h3>
+
+    {% if user.is_authenticated and request.user != item.seller %}
+    <form method="POST" aria-label="Send a message to the seller">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        {{ form.message.errors }}
+        {{ form.message }}
+        <button type="submit" class="buy-button">Send Message</button>
+    </form>
+    <hr>
+    {% endif %}
+
+    {% if messages %}
+    <ul>
+        {% for msg in messages %}
+        <li>
+            <strong>{{ msg.sender.username }}</strong> ({{ msg.created_at|date:"M d, Y H:i" }}):<br>
+            {{ msg.message }}
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No messages yet.</p>
+    {% endif %}
+</section>
+
+<p><a href="{% url 'home' %}">← Back to listings</a></p>
 {% endblock %}
