@@ -8,7 +8,6 @@ ReLuvd — Vinted-Style Django E-Commerce Marketplace
 - [Purpose and Value](#purpose-and-value)
 - [Target Audience](#target-audience)
 - [Key Features](#key-features)
-- [Technologies Used](#technologies-used)
 - [UX / Design](#ux--design)
   - [Wireframes](#wireframes)
   - [Key UX Goals](#key-ux-goals)
@@ -129,6 +128,10 @@ Faker (for database seeding)
 Heroku (deployment)
 
 Git & GitHub (version control)
+
+Visual Studio code
+
+Black formatter - Python
 
 
 ##  UX / Design
@@ -533,6 +536,8 @@ YouTube - checkout help (https://www.youtube.com/watch?v=Ly_8hRHSfdk)
 CSS reset - https://meyerweb.com/eric/tools/css/reset/
 
 
+
+
 ## File Structure
 
 The project follows Django’s recommended modular app structure:
@@ -641,9 +646,11 @@ Auto remove the product from the home screen once a product is sold and not to w
 
 Add sold items to the 'my orders' page under sold items.
 
+Reply to messages
+
 
 ## Known Issues
 
 - Email confirmation may sometimes be filtered to spam due to free tier email provider.
-- This version is deployed using Heroku free-tier dyno — potential idle time delays when waking up app.
+- This version is deployed using Heroku £5 tear — potential idle time delays when waking up app.
 - Stripe integration remains in test mode for demonstration purposes only.
