@@ -545,3 +545,30 @@ price = models.DecimalField(
 ![Email Order](doc_images/emailOrder.png) 
 
 
+
+## Lighthouse dev tools
+
+- Important: Always use incognito mode as plugins will effect your output
+
+
+| Test Case                         | Expected Result                                                       | Status |
+| --------------------------------- | --------------------------------------------------------------------- | ------ |
+| Initial HTTPS Lighthouse Audit    | No insecure requests / mixed content errors                           | ❌ Fail |
+| Cause Analysis (via Django shell) | Found `http://res.cloudinary.com/...` image URLs                      | ❌ Fail |
+| Updated Cloudinary Settings       | Added `"SECURE": True` in `settings.py`                               | ✅ Pass |
+| Model Secure URL Property Added   | Used `secure_image_url` property to generate HTTPS URLs for all items | ✅ Pass |
+| Template Rendering Updated        | Updated all image rendering to use `{{ item.secure_image_url }}`      | ✅ Pass |
+| Final Lighthouse Retest           | All resources loaded over HTTPS; no mixed content                     | ✅ Pass |
+
+
+FIX:
+Cloudinary storage config updated with SECURE: True.
+Added secure image property method to models.py.
+Updated templates to consistently serve images over HTTPS.
+Lighthouse now fully passes HTTPS & mixed content audit.
+
+![Lighthouse Homepage Fail](doc_images/lighthouseFail.png)
+![Lighthouse Homepage Pass](doc_images/lighthousePass.png)
+
+![Lighthouse Dashboard Pass](doc_images/dashboardPass.png)
+![Lighthouse Login Pass](doc_images/loginPass.png)
