@@ -49,22 +49,20 @@
                 <a href="{% url 'item_detail' item.id %}" aria-label="View details for {{ item.title }}">
                     {% if item.image %}
                     <div class="item-image-wrapper">
-                        <img src="{{ item.secure_image_url }}" alt="{{ item.title }}">
-
+                        <img src="{{ item.secure_image_url }}" alt="">
                     </div>
                     {% endif %}
-                </a>
 
-                <div class="item-info">
-                    <a href="{% url 'item_detail' item.id %}">
+                    <div class="item-info">
                         <h2 class="item-title">{{ item.title }}</h2>
-                    </a>
-                    <p><strong>Price:</strong> £{{ item.price }}</p>
-                    <p><strong>Available:</strong> {{ item.quantity }}</p>
-                    <p>{{ item.description|truncatewords:20 }}</p>
-                </div>
+                        <p><strong>Price:</strong> £{{ item.price }}</p>
+                        <p><strong>Available:</strong> {{ item.quantity }}</p>
+                        <p>{{ item.description|truncatewords:20 }}</p>
+                    </div>
+                </a>
             </div>
         </li>
+
         {% endfor %}
     </ul>
 
