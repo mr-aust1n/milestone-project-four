@@ -1,3 +1,4 @@
+<!-- edit_item.html -->
 {% extends "base.html" %}
 {% load static %}
 
@@ -13,11 +14,13 @@
         <form method="POST" enctype="multipart/form-data" aria-label="Edit item form">
             {% csrf_token %}
 
-            <!-- Render each field manually -->
-
             <label for="{{ form.title.id_for_label }}">Title:</label>
             {{ form.title }}
             {{ form.title.errors }}
+
+            <label for="{{ form.description.id_for_label }}">Description:</label>
+            {{ form.description }}
+            {{ form.description.errors }}
 
             <label for="{{ form.category.id_for_label }}">Category:</label>
             {{ form.category }}
