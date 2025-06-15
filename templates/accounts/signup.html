@@ -1,11 +1,17 @@
+<!-- Sign Up -->
+{% extends "base.html" %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/signup.css' %}">
+{% endblock %}
+
 {% block content %}
 <main aria-labelledby="signup-title">
     <h1 id="signup-title">Create Your ReLuvd Account</h1>
 
     <form method="POST" aria-label="Signup form">
         {% csrf_token %}
-
-        <div class="form-group">
+        <div>
             <label for="{{ form.email.id_for_label }}">Email:</label>
             {{ form.email }}
             <span id="{{ form.email.id_for_label }}_helptext" class="visually-hidden">
@@ -14,7 +20,7 @@
             {{ form.email.errors }}
         </div>
 
-        <div class="form-group">
+        <div>
             <label for="{{ form.username.id_for_label }}">Username:</label>
             {{ form.username }}
             <span id="{{ form.username.id_for_label }}_helptext" class="visually-hidden">
@@ -23,7 +29,7 @@
             {{ form.username.errors }}
         </div>
 
-        <div class="form-group">
+        <div>
             <label for="{{ form.password1.id_for_label }}">Password:</label>
             {{ form.password1 }}
             <span id="{{ form.password1.id_for_label }}_helptext" class="visually-hidden">
@@ -32,7 +38,7 @@
             {{ form.password1.errors }}
         </div>
 
-        <div class="form-group">
+        <div>
             <label for="{{ form.password2.id_for_label }}">Confirm Password:</label>
             {{ form.password2 }}
             <span id="{{ form.password2.id_for_label }}_helptext" class="visually-hidden">
@@ -41,13 +47,9 @@
             {{ form.password2.errors }}
         </div>
 
-        <button type="submit" class="submit-button" aria-label="Submit registration form">
-            Sign Up
-        </button>
+        <button type="submit" aria-label="Submit registration form">Sign Up</button>
     </form>
 
-    <p>Already have an account?
-        <a href="{% url 'login' %}" aria-label="Login to your account">Log in</a>
-    </p>
+    <p>Already have an account? <a href="{% url 'login' %}" aria-label="Login to your account">Log in</a></p>
 </main>
 {% endblock %}
