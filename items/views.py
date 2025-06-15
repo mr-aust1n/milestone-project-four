@@ -101,6 +101,10 @@ def edit_item(request, item_id):
     if request.method == "POST":
         form = ItemForm(request.POST, request.FILES, instance=item)
         if form.is_valid():
+            # Check if a new image was uploaded
+            if not request.FILES.get("image"):
+                form.instance.image = item.image  # retain existing image
+
             form.save()
             messages.success(request, "Item updated successfully.")
             return redirect("item_detail", item_id=item.id)
