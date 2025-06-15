@@ -4,7 +4,8 @@
 
     <form method="POST" aria-label="Signup form">
         {% csrf_token %}
-        <div>
+
+        <div class="form-group">
             <label for="{{ form.email.id_for_label }}">Email:</label>
             {{ form.email }}
             <span id="{{ form.email.id_for_label }}_helptext" class="visually-hidden">
@@ -13,7 +14,7 @@
             {{ form.email.errors }}
         </div>
 
-        <div>
+        <div class="form-group">
             <label for="{{ form.username.id_for_label }}">Username:</label>
             {{ form.username }}
             <span id="{{ form.username.id_for_label }}_helptext" class="visually-hidden">
@@ -22,7 +23,7 @@
             {{ form.username.errors }}
         </div>
 
-        <div>
+        <div class="form-group">
             <label for="{{ form.password1.id_for_label }}">Password:</label>
             {{ form.password1 }}
             <span id="{{ form.password1.id_for_label }}_helptext" class="visually-hidden">
@@ -31,7 +32,7 @@
             {{ form.password1.errors }}
         </div>
 
-        <div>
+        <div class="form-group">
             <label for="{{ form.password2.id_for_label }}">Confirm Password:</label>
             {{ form.password2 }}
             <span id="{{ form.password2.id_for_label }}_helptext" class="visually-hidden">
@@ -40,7 +41,9 @@
             {{ form.password2.errors }}
         </div>
 
-        <button type="submit" aria-label="Submit registration form">Sign Up</button>
+        <button type="submit" class="submit-button" aria-label="Submit registration form">
+            Sign Up
+        </button>
     </form>
 
     <p>Already have an account?
