@@ -374,8 +374,6 @@ price = models.DecimalField(
 
 
 
-
-
 ## Items Views Tests
 
 - Command: 'python manage.py test items.tests_views'
