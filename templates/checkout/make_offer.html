@@ -1,4 +1,9 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/make_offer.css' %}">
+{% endblock %}
 
 {% block content %}
 <main aria-labelledby="make-offer-title">
@@ -8,13 +13,13 @@
         {% csrf_token %}
         {{ form.non_field_errors }}
 
-        <div>
+        <div class="form-group">
             <label for="{{ form.offer_price.id_for_label }}">{{ form.offer_price.label }}:</label>
             {{ form.offer_price }}
             {{ form.offer_price.errors }}
         </div>
 
-        <div>
+        <div class="form-group">
             <label for="{{ form.note.id_for_label }}">{{ form.note.label }}:</label>
             {{ form.note }}
             {{ form.note.errors }}
@@ -23,6 +28,8 @@
         <button type="submit" aria-label="Submit your offer for {{ item.title }}">Submit Offer</button>
     </form>
 
-    <p><a href="{% url 'item_detail' item.id %}">← Back to item</a></p>
+    <p class="back-link">
+        <a href="{% url 'item_detail' item.id %}" aria-label="Back to item {{ item.title }}">← Back to item</a>
+    </p>
 </main>
 {% endblock %}
