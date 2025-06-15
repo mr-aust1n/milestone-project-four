@@ -92,4 +92,8 @@ form button[type="submit"] {
     .item-info-section {
         flex: 1;
     }
+
+    .item-image-wrapper {
+        max-width: 500px;
+    }
 }

@@ -138,7 +138,5 @@ input#image-clear_id {
         flex-direction: column;
     }
 
-    .item-image-wrapper {
-        max-width: 500px;
-    }
+
 }
