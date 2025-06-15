@@ -8,7 +8,7 @@
 {% block content %}
 <main aria-labelledby="edit-item-title">
     <div class="form-wrapper">
-        <h2 id="edit-item-title">Edit: {{ item.title }}</h2>
+        <h1 id="edit-item-title">Edit: {{ item.title }}</h1>
 
         <form method="POST" enctype="multipart/form-data" aria-label="Edit item form">
             {% csrf_token %}

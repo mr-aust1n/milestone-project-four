@@ -2,7 +2,7 @@
 
 {% block content %}
 <main aria-labelledby="make-offer-title">
-    <h2 id="make-offer-title">Make an Offer on {{ item.title }}</h2>
+    <h1 id="make-offer-title">Make an Offer on {{ item.title }}</h1>
 
     <form method="POST" aria-label="Offer form">
         {% csrf_token %}

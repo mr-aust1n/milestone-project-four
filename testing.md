@@ -633,3 +633,16 @@ Deprecated or obsolete syntax
 ![Base JS](doc_images/homejs.png)
 ![Search JS](doc_images/basejs.png)
 ![Notifications JS](doc_images/JigsawDahPass.png)
+
+
+
+
+
+
+
+
+
+
+wavepasshome.png
+waveAddItemPass.png
+RegisterWaveFail.png
