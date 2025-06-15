@@ -637,12 +637,84 @@ Deprecated or obsolete syntax
 
 
 
+## Wave
+
+- https://wave.webaim.org/report#/https://reluvd-79ae0afacc97.herokuapp.com/
+
+| Test Case                                | Expected Result                                 | Status     |
+| ---------------------------------------- | ----------------------------------------------- | ---------- |
+| ARIA `aria-describedby` Broken Reference | No broken ARIA references detected              | ❌ Fail     |
+| Redundant Links - Item Cards             | No redundant links to same destination          | ❌ Fail     |
+| Redundant Links - Home Link              | Multiple links to homepage reviewed             | ⚠ Reviewed |
+| JavaScript Jump Menu Alert               | Dropdown menus allow keyboard navigation        | ❌ Fail     |
+| Color Contrast - Buttons                 | Sufficient contrast between text and background | ❌ Fail     |
+| After Fixes Applied                      | All issues resolved, fully passes WAVE scan     | ✅ Pass     |
 
 
+- 1 Broken ARIA reference
+
+Cause:
+Django’s form fields automatically generated aria-describedby attributes (e.g. aria-describedby="id_username_helptext") even when no help text elements existed, resulting in broken ARIA references flagged by WAVE.
+Fix:
+Inserted visually-hidden <span> elements with matching IDs directly in the form template to provide valid ARIA targets.
+
+- Fully resolved broken ARIA reference errors.
 
 
+- 2 Redundant Links — Product Item Cards
+
+- Cause: 
+Both the product image and title were wrapped in separate anchor tags linking to the same product detail page.
+- Fix:
+Combined both image and text inside a single <a> tag, using aria-label to describe the link purpose for screen readers:
+
+- Resolved redundant link error in WAVE.
 
 
-wavepasshome.png
-waveAddItemPass.png
-RegisterWaveFail.png
+- 3 JavaScript Jump Menu Alert
+
+Cause:
+onchange events on select dropdowns triggered instant form submissions, creating accessibility issues for keyboard and screen reader users.
+Fix:
+Removed onchange events and replaced with a submit button to allow manual form submission after selection.
+
+- Fully resolved jump menu alert.
+
+
+- 4 Color Contrast Errors
+
+- Cause:
+The primary button color #E0584A with white text failed WCAG contrast requirements.
+
+- Fix:
+Adjusted primary red to #C94536 to achieve minimum 4.5:1 contrast ratio for normal text while retaining brand identity.
+- Fully passes color contrast requirements after adjustment.
+
+- 5 Headings
+Cause:
+Initial template markup incorrectly used multiple <h2> elements as primary page headings and inconsistent nesting of headings (h2, h3, etc.).
+This failed semantic heading hierarchy checks, as every page should start with a single <h1>, followed by properly nested subheadings (h2, h3, etc.).
+Fix:
+Updated all page templates to ensure each page starts with a single <h1> (typically the page title).
+All previously used <h2> elements that functioned as main page headings were changed to <h1>.
+Subheadings previously marked as <h3> were changed to <h2> to maintain correct document outline.
+
+
+- Warning Reviewed:
+One WAVE warning was reviewed where both the logo and the "Home" navigation link point to the homepage.
+This redundancy is intentional, as both provide valuable navigation options for different user types (visual users and screen reader users).
+Since this does not impact accessibility or usability, and WAVE classifies it as a warning only, no changes were made.
+
+- Final Result:
+After applying all fixes, WAVE reports zero accessibility errors.
+The application now fully complies with WCAG 2.1 Level AA standards.
+
+![Warning Ignored](doc_images/waveLinkIgnored.png)
+![Wave JS Fail](doc_images/WaveJsFail.png)
+![WaveHeadings Fail](doc_images/headingsWaveFail.png)
+![Wave Aria Fail](doc_images/RegisterWaveFail.png)
+![Wave Home Page Pass](doc_images/wavepasshome.png)
+![Wave Add Item Pass](doc_images/waveAddItemPass.png)
+![Wave Signup Pass](doc_images/signupWavePass.png)
+
+
