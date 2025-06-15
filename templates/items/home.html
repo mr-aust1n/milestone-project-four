@@ -8,14 +8,14 @@
 
 {% block content %}
 <main aria-label="Item listings">
-    <h2>Latest Items</h2>
+    <h1 class="latest">Latest Items</h1>
 
     {% if items %}
     <form method="GET" id="filterForm">
 
         <!-- Category Filter -->
         <label for="category" class="visually-hidden">Filter by category</label>
-        <select name="category" id="category" onchange="document.getElementById('filterForm').submit();">
+        <select name="category" id="category">
             <option value="">All Categories</option>
             {% for code, label in categories %}
             <option value="{{ code }}" {% if code == selected_category %}selected{% endif %}>{{ label }}</option>
@@ -24,7 +24,7 @@
 
         <!-- Sort By Filter -->
         <label for="sort" class="visually-hidden">Sort by</label>
-        <select name="sort" id="sort" onchange="document.getElementById('filterForm').submit();">
+        <select name="sort" id="sort">
             <option value="">Sort By</option>
             <option value="price_asc" {% if selected_sort == 'price_asc' %}selected{% endif %}>Price: Low to High
             </option>
@@ -33,7 +33,10 @@
             <option value="title_asc" {% if selected_sort == 'title_asc' %}selected{% endif %}>Title: A to Z</option>
             <option value="title_desc" {% if selected_sort == 'title_desc' %}selected{% endif %}>Title: Z to A</option>
         </select>
+
+        <button type="submit">Filter</button>
     </form>
+
 
     <!-- Search Field -->
     <input type="text" id="itemSearch" placeholder="Search items..." aria-label="Search by item title">

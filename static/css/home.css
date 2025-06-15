@@ -29,6 +29,12 @@
     background-color: #fdfdfd;
 }
 
+.latest {
+    font-size: 1.5rem;
+    color: var(--primary-purple);
+    margin-bottom: 1rem;
+}
+
 /* Desktop filter form layout */
 @media (min-width: 768px) {
     #filterForm {
