@@ -1,12 +1,3 @@
-<!-- Sign Up -->
-{% extends "base.html" %}
-{% load static %}
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/signup.css' %}">
-{% endblock %}
-
-
-
 {% block content %}
 <main aria-labelledby="signup-title">
     <h1 id="signup-title">Create Your ReLuvd Account</h1>
@@ -16,30 +7,44 @@
         <div>
             <label for="{{ form.email.id_for_label }}">Email:</label>
             {{ form.email }}
+            <span id="{{ form.email.id_for_label }}_helptext" class="visually-hidden">
+                Enter your email address.
+            </span>
             {{ form.email.errors }}
         </div>
 
         <div>
             <label for="{{ form.username.id_for_label }}">Username:</label>
             {{ form.username }}
+            <span id="{{ form.username.id_for_label }}_helptext" class="visually-hidden">
+                Choose a unique username.
+            </span>
             {{ form.username.errors }}
         </div>
 
         <div>
             <label for="{{ form.password1.id_for_label }}">Password:</label>
             {{ form.password1 }}
+            <span id="{{ form.password1.id_for_label }}_helptext" class="visually-hidden">
+                Enter a secure password.
+            </span>
             {{ form.password1.errors }}
         </div>
 
         <div>
             <label for="{{ form.password2.id_for_label }}">Confirm Password:</label>
             {{ form.password2 }}
+            <span id="{{ form.password2.id_for_label }}_helptext" class="visually-hidden">
+                Re-enter your password to confirm.
+            </span>
             {{ form.password2.errors }}
         </div>
 
         <button type="submit" aria-label="Submit registration form">Sign Up</button>
     </form>
 
-    <p>Already have an account? <a href="{% url 'login' %}" aria-label="Login to your account">Log in</a></p>
+    <p>Already have an account?
+        <a href="{% url 'login' %}" aria-label="Login to your account">Log in</a>
+    </p>
 </main>
 {% endblock %}
