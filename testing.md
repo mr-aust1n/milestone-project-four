@@ -600,3 +600,36 @@ FIX:
 ![Validator Dashboard Pass](doc_images/w3DashPass.png)
 ![Validator Login Pass](doc_images/w3LoginPass.png)
 
+
+
+
+This CSS validation initially failed due to the use of obsolete properties:
+-webkit-font-smoothing: antialiased; and interpolate-size: allow-keywords;.
+After removing these deprecated properties, all CSS tests passed successfully.
+![Jigsaw Pass](doc_images/JigsawPass.png)
+![Jigsaw Dashboard Pass](doc_images/JigsawDahPass.png)
+
+
+## JS Lint
+
+| File Tested                | Expected Result              | Status |
+| -------------------------- | ---------------------------- | ------ |
+| home_search.js            | No syntax errors o4 warnings | ✅ Pass |
+| Base_header.js                | No syntax errors or warnings | ✅ Pass |
+| notifications.js | No syntax errors 2 warnings | ✅ Pass |
+
+⚠️  Warnings can be ignored as its about Const is only available in ES6 onwards.
+
+
+Process:
+All custom JavaScript files were individually uploaded and tested using JSHint.
+Each file was checked for:
+Syntax errors
+Unused variables
+Missing semicolons
+Undefined variables
+Deprecated or obsolete syntax
+
+![Base JS](doc_images/homejs.png)
+![Search JS](doc_images/basejs.png)
+![Notifications JS](doc_images/JigsawDahPass.png)
