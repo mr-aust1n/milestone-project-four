@@ -46,7 +46,8 @@
                 <a href="{% url 'item_detail' item.id %}" aria-label="View details for {{ item.title }}">
                     {% if item.image %}
                     <div class="item-image-wrapper">
-                        <img src="{{ item.image.url }}" alt="{{ item.title }}">
+                        <img src="{{ item.secure_image_url }}" alt="{{ item.title }}">
+
                     </div>
                     {% endif %}
                 </a>

@@ -19,9 +19,7 @@ class Item(models.Model):
     description = models.TextField()
     category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
     price = models.DecimalField(
-        max_digits=8,
-        decimal_places=2,
-        validators=[MinValueValidator(0.01)],
+        max_digits=8, decimal_places=2, validators=[MinValueValidator(0.01)]
     )
     image = CloudinaryField("image")
     seller = models.ForeignKey(User, on_delete=models.CASCADE, related_name="items")
@@ -31,6 +29,10 @@ class Item(models.Model):
 
     def __str__(self):
         return self.title
+
+    @property
+    def secure_image_url(self):
+        return self.image.build_url(secure=True)
 
 
 class Message(models.Model):

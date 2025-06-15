@@ -11,7 +11,8 @@
 
     {% if item.image %}
     <div class="item-image-wrapper">
-        <img src="{{ item.image.url }}" alt="{{ item.title }}" class="item-image-large">
+        <img src="{{ item.secure_image_url }}" alt="{{ item.title }}">
+
     </div>
     {% endif %}
 

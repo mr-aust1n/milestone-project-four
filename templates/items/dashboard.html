@@ -14,7 +14,8 @@
     <div class="item-card">
         <div class="item-image-wrapper">
             {% if item.image %}
-            <img src="{{ item.image.url }}" alt="{{ item.title }}">
+            <img src="{{ item.secure_image_url }}" alt="{{ item.title }}">
+
             {% endif %}
         </div>
         <div class="item-info">
