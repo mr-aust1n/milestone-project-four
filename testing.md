@@ -572,3 +572,31 @@ Lighthouse now fully passes HTTPS & mixed content audit.
 
 ![Lighthouse Dashboard Pass](doc_images/dashboardPass.png)
 ![Lighthouse Login Pass](doc_images/loginPass.png)
+
+
+## validator.w3.org
+
+| Test Case                        | Expected Result                            | Status  |
+| -------------------------------- | ------------------------------------------ | ------- |
+| Initial W3C Validation - Home    | No errors or warnings                      | ❌ Fail  |
+| `role="banner"` Warning          | Redundant ARIA role on `<header>` element  | ⚠️ Warn |
+| Duplicate `<main>` Elements      | Only one `<main>` element allowed per page | ❌ Fail  |
+| `role="main"` Warning            | Redundant ARIA role on `<main>` element    | ⚠️ Warn |
+| `role="contentinfo"` Warning     | Redundant ARIA role on `<footer>` element  | ⚠️ Warn |
+| `height="auto"` Error on `<img>` | Invalid value for height attribute         | ❌ Fail  |
+| After applying template fixes    | No critical errors or warnings remaining   | ✅ Pass  |
+
+
+FIX:
+✅ Removed unnecessary ARIA roles (role="banner", role="main", role="contentinfo") as they are implied by HTML5 semantic elements.
+✅ Replaced nested <main> tags by removing <main> from base.html and allowing only one <main> per template.
+✅ Replaced height="auto" in <img> with CSS-based styling or completely removed height attribute from HTML.
+✅ Where appropriate, added aria-label to <footer> for improved accessibility.
+✅ Re-validated site after fixes and achieved full W3C compliance.
+
+
+![Validator Home Pass](doc_images/w3Fail.png)
+![Validator Login Pass](doc_images/w3Pass.png)
+![Validator Dashboard Pass](doc_images/w3DashPass.png)
+![Validator Login Pass](doc_images/w3LoginPass.png)
+
