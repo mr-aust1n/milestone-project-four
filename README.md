@@ -530,6 +530,8 @@ Bootstrap Docs
 
 YouTube - checkout help (https://www.youtube.com/watch?v=Ly_8hRHSfdk)
 
+CSS reset - https://meyerweb.com/eric/tools/css/reset/
+
 
 ## File Structure
 
