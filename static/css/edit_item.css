@@ -137,4 +137,8 @@ input#image-clear_id {
     .form-buttons {
         flex-direction: column;
     }
+
+    .item-image-wrapper {
+        max-width: 500px;
+    }
 }
