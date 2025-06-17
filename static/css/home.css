@@ -40,7 +40,7 @@
     #filterForm {
         flex-direction: row;
         justify-content: flex-start;
-        align-items: center;
+        align-items: flex-start;
     }
 
     #filterForm select {
