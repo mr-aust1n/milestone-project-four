@@ -46,6 +46,7 @@ ReLuvd — Vinted-Style Django E-Commerce Marketplace
 - [Future Improvements](#future-improvements)
 - [Known Issues](#known-issues)
 - [TESTING.md](TESTING.md)
+- [Bugs.md](bugs.md)
 
 
 
