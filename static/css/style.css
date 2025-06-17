@@ -238,6 +238,10 @@ select:focus {
     margin-bottom: 2rem;
 }
 
+form button[type="submit"] {
+    margin: 20px 0px;
+}
+
 /* Responsive typography */
 @media (max-width: 768px) {
     h1 {
