@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 
+
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/item_detail.css' %}">
 {% endblock %}
@@ -11,14 +12,17 @@
     {% if item.image %}
     <div class="item-image-wrapper">
         <img src="{{ item.secure_image_url }}" alt="{{ item.title }}">
+
     </div>
     {% endif %}
 
     <div class="item-info-section">
+
         <h2 id="item-title" class="item-title">{{ item.title }}</h2>
 
         <p><strong>Category:</strong> {{ item.get_category_display }}</p>
         <p class="item-price">£{{ item.price }}</p>
+
         <p class="item-description">{{ item.description }}</p>
 
         {% if item.is_sold %}
@@ -51,7 +55,9 @@
         {% endif %}
 
         <p><strong>Available:</strong> {{ item.quantity }}</p>
+
     </div>
+
 </main>
 
 <hr>
@@ -74,21 +80,9 @@
     <ul>
         {% for msg in messages %}
         <li>
-            <strong>{{ msg.sender.username|default:"Unknown sender" }}</strong>
-            ({{ msg.created_at|date:"M d, Y H:i" }}):<br>
+            <strong>{{ msg.sender.username }}</strong> ({{ msg.created_at|date:"M d, Y H:i" }}):<br>
             {{ msg.message }}
-
-            {% if user == item.seller and msg.sender %}
-            <form method="POST" action="{% url 'reply_to_message' msg.id %}" style="margin-top: 0.5rem;">
-                {% csrf_token %}
-                <textarea name="message" rows="2" placeholder="Reply to {{ msg.sender.username|default:"user" }}"
-                    required></textarea>
-                <button type="submit" class="btn small-btn"
-                    aria-label="Reply to {{ msg.sender.username|default:'user' }}">Reply</button>
-            </form>
-            {% endif %}
         </li>
-        <hr>
         {% endfor %}
     </ul>
     {% else %}
