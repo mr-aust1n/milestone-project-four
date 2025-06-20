@@ -82,7 +82,18 @@
         <li>
             <strong>{{ msg.sender.username }}</strong> ({{ msg.created_at|date:"M d, Y H:i" }}):<br>
             {{ msg.message }}
+
+            {% if user == item.seller %}
+            <!-- Reply form for seller -->
+            <form method="POST" action="{% url 'reply_to_message' msg.id %}" style="margin-top: 0.5rem;">
+                {% csrf_token %}
+                <textarea name="message" rows="2" placeholder="Reply to {{ msg.sender.username }}" required></textarea>
+                <button type="submit" class="btn small-btn"
+                    aria-label="Reply to {{ msg.sender.username }}">Reply</button>
+            </form>
+            {% endif %}
         </li>
+        <hr>
         {% endfor %}
     </ul>
     {% else %}

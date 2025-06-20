@@ -28,3 +28,18 @@ class MessageForm(forms.ModelForm):
                 }
             )
         }
+
+
+class MessageReplyForm(forms.ModelForm):
+    class Meta:
+        model = Message
+        fields = ["message"]
+        widgets = {
+            "message": forms.Textarea(
+                attrs={
+                    "rows": 3,
+                    "placeholder": "Write your reply here...",
+                    "aria-label": "Reply to buyer",
+                }
+            )
+        }

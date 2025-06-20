@@ -37,7 +37,14 @@ class Item(models.Model):
 
 class Message(models.Model):
     item = models.ForeignKey("Item", on_delete=models.CASCADE, related_name="messages")
-    sender = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    sender = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="sent_messages"
+    )
+    receiver = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="received_messages",
+    )
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -45,4 +52,4 @@ class Message(models.Model):
         ordering = ["-created_at"]
 
     def __str__(self):
-        return f"Message by {self.sender.username} on {self.item.title}"
+        return f"{self.sender.username} → {self.receiver.username} on {self.item.title}"

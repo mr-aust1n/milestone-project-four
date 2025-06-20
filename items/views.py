@@ -6,7 +6,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 
 from checkout.models import Order
 
-from .forms import ItemForm, MessageForm
+from .forms import ItemForm, MessageForm, MessageReplyForm
 from .models import Item, Message
 
 
@@ -140,4 +140,32 @@ def dashboard(request):
         request,
         "items/dashboard.html",
         {"my_items": my_items, "offers": offers, "messages": messages},
+    )
+
+
+@login_required
+def reply_to_message(request, message_id):
+    original_message = get_object_or_404(Message, id=message_id)
+
+    # Only the item seller can reply
+    if original_message.item.seller != request.user:
+        return redirect("dashboard")
+
+    if request.method == "POST":
+        form = MessageReplyForm(request.POST)
+        if form.is_valid():
+            reply = form.save(commit=False)
+            reply.item = original_message.item
+            reply.sender = request.user
+            reply.receiver = original_message.sender
+            reply.save()
+            messages.success(request, "Reply sent.")
+            return redirect("dashboard")
+    else:
+        form = MessageReplyForm()
+
+    return render(
+        request,
+        "items/reply_message.html",
+        {"form": form, "original": original_message},
     )

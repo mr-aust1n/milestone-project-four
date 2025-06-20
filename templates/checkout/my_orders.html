@@ -9,6 +9,7 @@
 <main aria-labelledby="my-orders-heading">
     <h1 id="my-orders-heading">My Orders</h1>
 
+
     {% if orders %}
     <table aria-describedby="my-orders-heading">
         <thead>
@@ -33,7 +34,7 @@
                     {% if order.is_offer %}
                     {{ order.status|title }}
                     {% else %}
-                    Direct Purchase
+                    Paid
                     {% endif %}
                 </td>
                 <td>{{ order.created_at|date:"M d, Y H:i" }}</td>
