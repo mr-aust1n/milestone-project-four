@@ -68,9 +68,43 @@ def item_detail(request, item_id):
             message = form.save(commit=False)
             message.item = item
             message.sender = request.user
+            message.receiver = item.seller  # ✅ Add this line
             message.save()
 
             # ✅ Email alert to seller
+            send_mail(
+                subject=f"New message about your item: {item.title}",
+                message=(
+                    f"You've received a new message from {request.user.username}:\n\n"
+                    f"{message.message}\n\n"
+                    f"View the item here: http://127.0.0.1:8000/{item.id}/"
+                ),
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=[item.seller.email],
+                fail_silently=True,
+            )
+
+            return redirect("item_detail", item_id=item.id)
+    else:
+        form = MessageForm()
+
+    return render(
+        request,
+        "items/item_detail.html",
+        {"item": item, "form": form, "messages": messages},
+    )
+    item = get_object_or_404(Item, pk=item_id)
+    messages = item.messages.select_related("sender")
+
+    if request.method == "POST":
+        form = MessageForm(request.POST)
+        if form.is_valid():
+            message = form.save(commit=False)
+            message.item = item
+            message.sender = request.user
+            message.save()
+
+            #  Email alert to seller
             send_mail(
                 subject=f"New message about your item: {item.title}",
                 message=(
