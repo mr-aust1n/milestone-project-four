@@ -16,10 +16,8 @@
 
     <div class="item-info-section">
         <h2 id="item-title" class="item-title">{{ item.title }}</h2>
-
         <p><strong>Category:</strong> {{ item.get_category_display }}</p>
         <p class="item-price">£{{ item.price }}</p>
-
         <p class="item-description">{{ item.description }}</p>
 
         {% if item.is_sold %}
@@ -75,8 +73,12 @@
     <ul>
         {% for msg in messages %}
         <li>
+            {% if msg.sender %}
             <strong>{{ msg.sender.username }}</strong> ({{ msg.created_at|date:"M d, Y H:i" }}):<br>
-            {{ msg.message|linebreaks }}
+            {% else %}
+            <strong>Unknown User</strong> ({{ msg.created_at|date:"M d, Y H:i" }}):<br>
+            {% endif %}
+            {{ msg.message }}
 
             {% if user == item.seller and msg.sender %}
             <form method="POST" action="{% url 'reply_to_message' msg.id %}" style="margin-top: 0.5rem;">
