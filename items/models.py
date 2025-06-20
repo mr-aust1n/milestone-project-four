@@ -21,7 +21,7 @@ class Item(models.Model):
     price = models.DecimalField(
         max_digits=8, decimal_places=2, validators=[MinValueValidator(0.01)]
     )
-    image = CloudinaryField("image")
+    image = CloudinaryField("image", blank=True, null=True)
     seller = models.ForeignKey(User, on_delete=models.CASCADE, related_name="items")
     date_posted = models.DateTimeField(auto_now_add=True)
     is_sold = models.BooleanField(default=False)
@@ -44,6 +44,7 @@ class Message(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name="received_messages",
+        null=True,  # temporarily allow null to avoid migration conflict
     )
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
@@ -52,4 +53,4 @@ class Message(models.Model):
         ordering = ["-created_at"]
 
     def __str__(self):
-        return f"{self.sender.username} → {self.receiver.username} on {self.item.title}"
+        return f"Message from {self.sender.username} to {self.receiver.username} about {self.item.title}"
