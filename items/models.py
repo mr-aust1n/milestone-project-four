@@ -34,6 +34,10 @@ class Item(models.Model):
     def secure_image_url(self):
         return self.image.build_url(secure=True)
 
+    def save(self, *args, **kwargs):
+        self.is_sold = self.quantity == 0
+        super().save(*args, **kwargs)
+
 
 class Message(models.Model):
     item = models.ForeignKey("Item", on_delete=models.CASCADE, related_name="messages")

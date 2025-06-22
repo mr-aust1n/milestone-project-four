@@ -20,9 +20,6 @@
         <p class="item-price">£{{ item.price }}</p>
         <p class="item-description">{{ item.description }}</p>
 
-        {% if item.is_sold %}
-        <p><em>This item has been sold.</em></p>
-        {% endif %}
 
         {% if user.is_authenticated and request.user == item.seller %}
         <div class="actions">
