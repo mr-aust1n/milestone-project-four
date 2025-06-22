@@ -26,6 +26,9 @@
                 autocomplete="current-password">
         </div>
         <button type="submit" aria-label="Login to your account">Login</button>
+        <p style="margin-top: 1rem;">
+            <a href="{% url 'password_reset' %}" aria-label="Reset your password">Forgot your password?</a>
+        </p>
     </form>
 </main>
 {% endblock %}
