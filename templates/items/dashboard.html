@@ -39,28 +39,35 @@
 
 <h3>Offers Received</h3>
 {% if offers %}
-<ul class="offer-list">
+<div class="dashboard-grid">
     {% for offer in offers %}
-    <li>
-        <strong>{{ offer.item.title }}</strong> — £{{ offer.price }} from {{ offer.buyer.username }}<br>
-        <em>{{ offer.offer_note }}</em><br>
-        Submitted on {{ offer.created_at|date:"M d, Y H:i" }}<br>
+    <div class="offer-card" role="region" aria-label="Offer from {{ offer.buyer.username }}">
+        <div class="offer-header">
+            <strong>{{ offer.item.title }}</strong><br>
+            <span>£{{ offer.price }} from {{ offer.buyer.username }}</span>
+        </div>
+        <p class="offer-meta">{{ offer.created_at|date:"M d, Y H:i" }}</p>
+        <p class="offer-note"><em>{{ offer.offer_note }}</em></p>
 
         {% if offer.status == "pending" %}
-        <form action="{% url 'accept_offer' offer.id %}" method="post" style="display:inline;">
+        <form action="{% url 'accept_offer' offer.id %}" method="post">
             {% csrf_token %}
-            <button type="submit" aria-label="Accept offer from {{ offer.buyer.username }}">Accept</button>
+            <button type="submit" class="offer-action"
+                aria-label="Accept offer from {{ offer.buyer.username }}">Accept</button>
         </form>
-        <form action="{% url 'reject_offer' offer.id %}" method="post" style="display:inline;">
+        <form action="{% url 'reject_offer' offer.id %}" method="post">
             {% csrf_token %}
-            <button type="submit" aria-label="Reject offer from {{ offer.buyer.username }}">Reject</button>
+            <button type="submit" class="offer-action"
+                aria-label="Reject offer from {{ offer.buyer.username }}">Reject</button>
         </form>
         {% else %}
         <p>Status: <strong>{{ offer.status|title }}</strong></p>
         {% endif %}
-    </li>
+    </div>
     {% endfor %}
-</ul>
+</div>
+
+
 {% else %}
 <p>No offers submitted yet.</p>
 {% endif %}
