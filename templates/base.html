@@ -49,16 +49,15 @@
                         {% if user.is_superuser %}
                         <li><a href="/admin/">Admin</a></li>
                         {% endif %}
-                        <li>
-                            <form action="{% url 'logout' %}" method="post" style="display: inline;">
-                                {% csrf_token %}
-                                <button type="submit" aria-label="Log out of your account">Logout</button>
-                            </form>
-                        </li>
+
 
                         {% if user.is_authenticated %}
-                        <span> {{ user.username }}</span> |
-                        <a href="{% url 'logout' %}">Logout</a>
+                        <span style="margin-right: 10px;"> {{ user.username }}</span> |
+                        <form style="margin-left: 10px;" action="{% url 'logout' %}" method="post"
+                            style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" aria-label="Log out of your account">Logout</button>
+                        </form>
                         {% else %}
                         <a href="{% url 'login' %}">Login</a> {% endif %}
 
