@@ -108,7 +108,7 @@ Full manual & automated testing suite
 
 Fully seeded database for demo
 
-![Dashboard](doc_images/dashboardLoggedin.png)
+![Dashboard](doc_images/DashboardLoggedin.png)
 
 - Technologies Used
 
