@@ -31,14 +31,14 @@
 - [Version Control](#version-control)
 - [Summary](#summary)
 
-# Key 
+## Key 
 
 ✅ - PASS
 
 ❌ - Fail
 
 
-# Testing Documentation: ReLuvd Full Stack Application
+## Testing Documentation: ReLuvd Full Stack Application
 
 This document outlines the full testing process for the ReLuvd Django Full Stack application. It includes manual tests for all core features, automated unit tests for models, forms and views, accessibility testing using WAVE and Lighthouse, cross-browser testing, error handling tests, and deployment environment testing. A combination of Test Driven Development (TDD) and manual exploratory testing approaches were applied to ensure full system coverage.
 
@@ -300,13 +300,13 @@ The ReLuvd application has been fully tested against all functional, security, a
 
 
 ## Opening Ports to test on a local network
-![Email Message Received](doc_images/localSetup.png) 
+![Email Message Received](doc_images/localSetup.png)<br> 
 
 
-# Manual Testing Below
+## Manual Testing Below
 This section outlines the manual testing performed for the **Item Detail View**.
 
-## ✅ Test Cases
+## ✅ **Test Cases**
 
 
 | Test Case                | Expected Result                                                                     | Status   |
@@ -317,15 +317,15 @@ This section outlines the manual testing performed for the **Item Detail View**.
 | Confirm correct item    | Match displayed title, price, description, and image – all content matches database | ✅ Pass  |
 
 
-![invalid ID](doc_images/invalidID.png) 
-![Correct Item ID](doc_images/correctID.png) 
+![invalid ID](doc_images/invalidID.png)<br> 
+![Correct Item ID](doc_images/correctID.png)<br> 
 
 
-# Manual Testing: Edit item
+## Manual Testing: Edit item
 
 This section outlines the manual testing performed for the **Edit Item**.
 
-## ✅ Test Cases
+## ✅ **Test Cases**
 
 
 | Test Case                      | Expected Result                                                                 | Status   |
@@ -337,17 +337,17 @@ This section outlines the manual testing performed for the **Edit Item**.
 | Submit invalid edits          | Submitting blank required fields returns with error messages                    | ✅ Pass  |
 | Unauthorized edit attempt     | Visiting `/item_id/edit/` as non-owner returns 404                              | ✅ Pass  |
 
-![Editing](doc_images/editTest.png) 
-![Edit Successful](doc_images/EditSuccessful.png) 
-![Invalid Edits](doc_images/InvalidEdits.png) 
+![Editing](doc_images/editTest.png)<br> 
+![Edit Successful](doc_images/EditSuccessful.png)<br> 
+![Invalid Edits](doc_images/InvalidEdits.png)<br> 
 
 
 
-# Manual Testing: User Registration 
+## Manual Testing: User Registration 
 
 This section outlines the manual testing performed for the **User Registration**.
 
-## ✅ Test Cases
+## ✅ **Test Cases**
 
 | Test Case                                     | Expected Result                                                                 | Status   |
 |----------------------------------------------|----------------------------------------------------------------------------------|----------|
@@ -361,22 +361,22 @@ This section outlines the manual testing performed for the **User Registration**
 | Reuse valid activation link                  | Gracefully handles with “already activated” or success message again            | ✅ Pass  |
 | Email address stored in database             | `User.email` field correctly populated after registration                        | ✅ Pass  |
 
-![Password Required](doc_images/RequiredPassword.png) 
-![User Exists](doc_images/UserExists.png) 
-![Password Requirements](doc_images/PasswordRequirements.png) 
-![Invalid Email](doc_images/InvalidEmail.png) 
-![Email Confirmation](doc_images/EmailConfirmation.png) 
-![Testing the .env data is pulled ok](doc_images/testingEnv.png) 
+![Password Required](doc_images/RequiredPassword.png)<br> 
+![User Exists](doc_images/UserExists.png)<br> 
+![Password Requirements](doc_images/PasswordRequirements.png)<br> 
+![Invalid Email](doc_images/InvalidEmail.png)<br> 
+![Email Confirmation](doc_images/EmailConfirmation.png)<br> 
+![Testing the .env data is pulled ok](doc_images/testingEnv.png)<br> 
 
 
 
 
 
-# Manual Testing: User Registration 
+## Manual Testing: User Registration 
 
 This section outlines the manual testing performed for the **User Dashboard**.
 
-## ✅ Test Cases
+## ✅ **Test Cases**
 
 | Test Case                             | Expected Result                                                                    | Status   |
 |--------------------------------------|-------------------------------------------------------------------------------------|----------|
@@ -387,23 +387,23 @@ This section outlines the manual testing performed for the **User Dashboard**.
 | User with no listings                | Sees message: “You haven’t listed any items yet.”                                  | ✅ Pass  |
 
 
-![Logged out Redirected](doc_images/DashbaordDiverted.png) 
-![Logged in Redirected](doc_images/DashboardLoggedin.png) 
-![Edit Links](doc_images/DashboardLoggedin.png)  
-![Missing Image](doc_images/ImageMissing.png) 
-![No Items](doc_images/NoItems.png) 
+![Logged out Redirected](doc_images/DashbaordDiverted.png)<br> 
+![Logged in Redirected](doc_images/DashboardLoggedin.png)<br> 
+![Edit Links](doc_images/DashboardLoggedin.png)<br>  
+![Missing Image](doc_images/ImageMissing.png)<br> 
+![No Items](doc_images/NoItems.png)<br> 
 
 
-# Manual Testing: .Env 
+## Manual Testing: .Env 
 
 This section outlines the manual testing performed for the **.env**.  This makes sure my app can access the .env files correctly.
 
-## ✅ Test Cases
+## ✅ **Test Cases**
 
-![Email Test](doc_images/testingEnvEmail.png) 
-![Stripe Test](doc_images/testingEnvStripe.png) 
+![Email Test](doc_images/testingEnvEmail.png)<br> 
+![Stripe Test](doc_images/testingEnvStripe.png)<br> 
 
-## ✅ Buy Now / Make Offer
+## ✅ **Buy Now / Make Offer**
 
 
 
@@ -420,17 +420,17 @@ This section outlines the manual testing performed for the **.env**.  This makes
 
 
 - None Seller View - Showing Buy Now and Make Offer Offer
-![Buy Now](doc_images/buynow.png) 
-![Make Offer](doc_images/buynow.png) 
+![Buy Now](doc_images/buynow.png)<br> 
+![Make Offer](doc_images/buynow.png)<br> 
 
 - Seller View - Not showing Buy Now or Make Offer 
-![Buy Now](doc_images/noBuyNow.png) 
-![Make Offer](doc_images/noBuyNow.png) 
+![Buy Now](doc_images/noBuyNow.png)<br> 
+![Make Offer](doc_images/noBuyNow.png)<br> 
 
 - Offer 
-![Offer Sent](doc_images/offerSent.png) 
-![Offer Received](doc_images/OfferReceived.png) 
-![Offer Accepted](doc_images/accepted.png) 
+![Offer Sent](doc_images/offerSent.png)<br> 
+![Offer Received](doc_images/OfferReceived.png)<br> 
+![Offer Accepted](doc_images/accepted.png)<br> 
 
 
 | Test Case                                  | Expected Result                                                                  | Status   |
@@ -444,7 +444,7 @@ This section outlines the manual testing performed for the **.env**.  This makes
 | Only seller of item can respond           | Other users cannot trigger accept/reject (redirect to dashboard)                 | ✅ Pass  |
 | Buyer cannot see other users’ offers      | Offers are not visible to buyers or anonymous users                              | ✅ Pass  |
 
-## ✅ Search
+## ✅ **Search**
 
 | Test Case                            | Expected Result                                                            | Status   |
 |-------------------------------------|-----------------------------------------------------------------------------|----------|
@@ -459,8 +459,8 @@ This section outlines the manual testing performed for the **.env**.  This makes
 | JavaScript gracefully degrades      | Entire item list still visible if JS disabled                              | ✅ Pass  |
 
 
-![Search](doc_images/jeans.png) 
-![JS Disabled](doc_images/noJS.png) 
+![Search](doc_images/jeans.png)<br> 
+![JS Disabled](doc_images/noJS.png)<br> 
 
 
 
@@ -480,10 +480,10 @@ This section outlines the manual testing performed for the **.env**.  This makes
 
 
 
-![Message Composed ](doc_images/MessageCompose.png) 
-![Message Sent](doc_images/messageSent.png) 
-![Message Received](doc_images/messageReceived.png) 
-![Email Message Received](doc_images/EmailMessage.png) 
+![Message Composed ](doc_images/MessageCompose.png)<br> 
+![Message Sent](doc_images/messageSent.png)<br> 
+![Message Received](doc_images/messageReceived.png)<br> 
+![Email Message Received](doc_images/EmailMessage.png)<br> 
 
 
 
@@ -502,19 +502,19 @@ This section outlines the manual testing performed for the **.env**.  This makes
 | Accessibility (form, labels, navigation)  | Fully accessible via keyboard and screen readers                              | ✅ Pass  |
 
  
-![Email Enter](doc_images/PasswordForgot.png) 
-![Email Received](doc_images/PasswordEmail.png) 
-![Message to check email](doc_images/CheckEmail.png) 
-![New Password Enter](doc_images/NewPassword.png) 
-![Reset Complete](doc_images/ResetComplete.png) 
+![Email Enter](doc_images/PasswordForgot.png)<br> 
+![Email Received](doc_images/PasswordEmail.png)<br> 
+![Message to check email](doc_images/CheckEmail.png)<br> 
+![New Password Enter](doc_images/NewPassword.png)<br> 
+![Reset Complete](doc_images/ResetComplete.png)<br> 
 
-# Automated Testing Below
+## Automated Testing Below
 
 ### Model Unit Tests 
 
 ### Items Model Test
 
-- Command: 'python manage.py test items'
+- **Command:** `python manage.py test items`
 
 | Test Case         | Expected Result                     | Status   |
 |-------------------|--------------------------------------|----------|
@@ -523,12 +523,12 @@ This section outlines the manual testing performed for the **.env**.  This makes
 | Item Quantity     | Item quantity saved correctly       | ✅ Pass   |
 | Item Seller       | Item seller assigned correctly      | ✅ Pass   |
 
-![Items Test](doc_images/itemsTest.png) 
+![Items Test](doc_images/itemsTest.png)<br> 
 
 
 ### Checkout Model Test
 
-- Command: 'python manage.py test checkout'
+- **Command:** `python manage.py test checkout`
 
 
 | Test Case             | Expected Result                                  | Status   |
@@ -538,13 +538,13 @@ This section outlines the manual testing performed for the **.env**.  This makes
 | Verify Buyer Username | Buyer username is correctly assigned to order    | ✅ Pass   |
 | Verify Item Linked    | Order is linked to correct item                  | ✅ Pass 
 
-![Checkout Test](doc_images/checkoutTest.png) 
+![Checkout Test](doc_images/checkoutTest.png)<br> 
 
 
 
 ## Account Model Test
 
-- Command: 'python manage.py test accounts'
+- **Command:** `python manage.py test accounts`
 
 | App      | Tests Run | Description                                 | Status   |
 |----------|-----------|----------------------------------------------|----------|
@@ -552,7 +552,7 @@ This section outlines the manual testing performed for the **.env**.  This makes
 | `checkout` | 2      | Test purchase flow, Stripe checkout session  | ✅ Pass  |
 | `accounts` | 3      | Signup, Login, User creation functionality    | ✅ Pass  |
 
-![Accounts Test](doc_images/accountsTest.png) 
+![Accounts Test](doc_images/accountsTest.png)<br> 
 
 **Total tests run:** 5 
 **Test framework used:** Django built-in `unittest`
@@ -568,7 +568,7 @@ To run all tests: 'python manage.py test'
 
 ## Form Items Tests 
 
-- Command: 'python manage.py test items.tests_forms'
+- **Command:** `python manage.py test items.tests_forms`
 
 During development, one failure was encountered during form validation testing which was then resolved.
 
@@ -587,7 +587,7 @@ During development, one failure was encountered during form validation testing w
 
 **Error message:**
 
-![Failed Test](doc_images/itemsTestFormsFail.png) 
+![Failed Test](doc_images/itemsTestFormsFail.png)<br> 
 
 **Fix**
 
@@ -604,7 +604,7 @@ price = models.DecimalField(
 
 - I reran the test and all three tests passed.
 
-![Failed Test](doc_images/itemsTestFormsPass.png) 
+![Failed Test](doc_images/itemsTestFormsPass.png)<br> 
 
 
 - A extra layer of security was added in ItemForm to make sure the price does not go below zero"
@@ -622,7 +622,7 @@ price = models.DecimalField(
 
 ## Form Checkout Tests 
 
-- Command: 'python manage.py test checkout.tests_forms'
+- **Command:** `python manage.py test checkout.tests_forms`
 
 | Test Case                     | Expected Result                                                  | Status  |
 |--------------------------------|-------------------------------------------------------------------|---------|
@@ -645,13 +645,13 @@ price = models.DecimalField(
     validators=[MinValueValidator(0.01)]]
 
 
-![Failed Test](doc_images/checkoutTestFormFail.png) 
-![PassTest](doc_images/checkoutTestFormPass.png) 
+![Failed Test](doc_images/checkoutTestFormFail.png)<br> 
+![PassTest](doc_images/checkoutTestFormPass.png)<br> 
 
 
 ##  Form Accounts Tests
 
-- Command: 'python manage.py test accounts.tests_forms'
+- **Command:** `python manage.py test accounts.tests_forms`
 ### Test Summary
 
 | Test Case                    | Description                                  | Status |
@@ -664,13 +664,13 @@ price = models.DecimalField(
 - All tests passed first time.
 - These tests confirm that Django’s built-in `UserCreationForm` is functioning as expected for valid and invalid inputs.
 
-![PassTest](doc_images/AccountsFormTestPass.png) 
+![PassTest](doc_images/AccountsFormTestPass.png)<br> 
 
 
 
 ## Items Views Tests
 
-- Command: 'python manage.py test items.tests_views'
+- **Command:** `python manage.py test items.tests_views`
 
 | Test Case                  | Expected Result              | Status  |
 |----------------------------|--------------------------------|---------|
@@ -678,14 +678,14 @@ price = models.DecimalField(
 | Add Item view loads        | Form rendered correctly       | ✅ Pass  |
 | Dashboard loads            | User-specific data displayed  | ✅ Pass  |
 
-![PassTest](doc_images/itemsTests1.png) 
+![PassTest](doc_images/itemsTests1.png)<br> 
 
 
 
 
 ## Checkout Views Tests
 
-- Command: 'python manage.py test checkout.tests_views'
+- **Command:** `python manage.py test checkout.tests_views`
 
 
 | Test Case                  | Expected Result                                       | Status |
@@ -701,18 +701,18 @@ price = models.DecimalField(
 - **Fix:** We added authentication (`self.client.login(...)`) in the test `setUp()` method to simulate a logged-in user, ensuring the test client could access protected views correctly.
 
 
-![FailTest](doc_images/CheckoutViewsFail.png) 
-![PassTest](doc_images/CheckoutViewsPass.png) 
+![FailTest](doc_images/CheckoutViewsFail.png)<br> 
+![PassTest](doc_images/CheckoutViewsPass.png)<br> 
 
 ## Accounts Views Tests
 
-- Command: 'python manage.py test checkout.tests_views'
+- **Command:** `python manage.py test checkout.tests_views`
 
 
 
 ## Accounts Views Tests
 
-- Command: 'python manage.py test checkout.tests_views'
+- **Command:** `python manage.py test checkout.tests_views`
 
 
 | Test Case               | Purpose                               | Status |
@@ -726,14 +726,14 @@ price = models.DecimalField(
 - **Fix:** Correct logout path and ensured proper HTTP method used in `base.html`.
 
 
-![FailTest](doc_images/accountsViewsFail.png) 
-![PassTest](doc_images/accountsViewsPass.png) 
+![FailTest](doc_images/accountsViewsFail.png)<br> 
+![PassTest](doc_images/accountsViewsPass.png)<br> 
 
 
 ## Checkout Views Tests
 
 
-- Command: 'python manage.py test checkout.tests_orders'
+- **Command:** `python manage.py test checkout.tests_orders`
 
 
 | Test Case                           | Expected Result                                         | Status   |
@@ -743,14 +743,14 @@ price = models.DecimalField(
 | Payment Marks Item Sold (if 0 left) | Item marked as sold when quantity reaches zero           | ✅ Pass  |
 
 
-![PassTest](doc_images/accountsViewsPass.png) 
+![PassTest](doc_images/accountsViewsPass.png)<br> 
 
 
 
 
 ### Standard User Permissions Unit Tests 
 
-- Command: 'python manage.py test accounts.tests_views.AccountsViewsTest.test_logout_redirects'
+- **Command:** `python manage.py test accounts.tests_views.AccountsViewsTest.test_logout_redirects`
 
 
 | Test Case                          | Expected Result                                        | Status   |
@@ -761,13 +761,13 @@ price = models.DecimalField(
 
 - FIX Swapped from GET to POST for my security -  ✅ Pass
 
-![FailTest](doc_images/permissionTestFail.png) 
-![PassTest](doc_images/permissionTestPass.png) 
+![FailTest](doc_images/permissionTestFail.png)<br> 
+![PassTest](doc_images/permissionTestPass.png)<br> 
 
 
 ### Admin Permissions Unit Tests 
 
-- `Command: 'python manage.py test accounts.test_admin_permissions'
+- `**Command:** `python manage.py test accounts.test_admin_permissions`
 
 | Test Case                          | Expected Result                                        | Status   |
 |------------------------------------|--------------------------------------------------------|----------|
@@ -776,7 +776,7 @@ price = models.DecimalField(
 | Logout Redirect Test (After Fix)   | Updated test to use POST request; test now passes with HTTP 302 redirect | ✅ Pass  |
 | Admin Access Denied (Non-Admin)    | Logged-in regular user unable to access /admin/ page (permission denied) | ✅ Pass  |
 
-![PassTest](doc_images/adminTestPass.png) 
+![PassTest](doc_images/adminTestPass.png)<br> 
 
 
 ## URL Resolution Tests
@@ -787,19 +787,19 @@ price = models.DecimalField(
 |-----------------------------------|---------------------------------------------------------------|----------|
 | Dashboard URL resolves correctly  | Named URL 'dashboard' resolves to the correct dashboard view | ✅ Pass  |
 
-![PassTest](doc_images/urlTest.png) 
+![PassTest](doc_images/urlTest.png)<br> 
 
 
 ## Error Handling Tests
 
-- Command: 'python manage.py test accounts.test_error_handling'
+- **Command:** `python manage.py test accounts.test_error_handling`
 
 | Test Case                         | Expected Result                                           | Status   |
 |-----------------------------------|------------------------------------------------------------|----------|
 | Invalid URL returns 404 response  | Visiting a non-existent URL returns a 404 (not a crash)   | ✅ Pass  |
 
 
-![PassTest](doc_images/errorTest.png) 
+![PassTest](doc_images/errorTest.png)<br> 
 
 
 
@@ -810,10 +810,10 @@ price = models.DecimalField(
 | ItemForm missing required fields         | Form is invalid; 'title' and 'price' fields return validation errors  | ✅ Pass  |
 
 
-- Command: 'python manage.py test items.test_forms'
+- **Command:** `python manage.py test items.test_forms`
 
 
-![PassTest](doc_images/formTestPass.png) 
+![PassTest](doc_images/formTestPass.png)<br> 
 
 
 
@@ -834,9 +834,9 @@ price = models.DecimalField(
 | Payment confirmation email sent       | Email confirmation sent to user after successful purchase (if enabled)          | ✅ Pass  |
 | Secure HTTPS connection enforced      | Payment page always uses HTTPS, no insecure elements present                    | ✅ Pass  |
 
-![Payment Success](doc_images/paymentSucess.png) 
-![Invalid Card](doc_images/invalidCard.png) 
-![Email Order](doc_images/emailOrder.png) 
+![Payment Success](doc_images/paymentSucess.png)<br> 
+![Invalid Card](doc_images/invalidCard.png)<br> 
+![Email Order](doc_images/emailOrder.png)<br> 
 
 
 
@@ -861,11 +861,11 @@ Added secure image property method to models.py.
 Updated templates to consistently serve images over HTTPS.
 Lighthouse now fully passes HTTPS & mixed content audit.
 
-![Lighthouse Homepage Fail](doc_images/lighthouseFail.png)
-![Lighthouse Homepage Pass](doc_images/lighthousePass.png)
+![Lighthouse Homepage Fail](doc_images/lighthouseFail.png)<br>
+![Lighthouse Homepage Pass](doc_images/lighthousePass.png)<br>
 
-![Lighthouse Dashboard Pass](doc_images/dashboardPass.png)
-![Lighthouse Login Pass](doc_images/loginPass.png)
+![Lighthouse Dashboard Pass](doc_images/dashboardPass.png)<br>
+![Lighthouse Login Pass](doc_images/loginPass.png)<br>
 
 
 ## validator.w3.org
@@ -889,10 +889,10 @@ FIX:
 ✅ Re-validated site after fixes and achieved full W3C compliance.
 
 
-![Validator Home Pass](doc_images/w3Fail.png)
-![Validator Login Pass](doc_images/w3Pass.png)
-![Validator Dashboard Pass](doc_images/w3DashPass.png)
-![Validator Login Pass](doc_images/w3LoginPass.png)
+![Validator Home Pass](doc_images/w3Fail.png)<br>
+![Validator Login Pass](doc_images/w3Pass.png)<br>
+![Validator Dashboard Pass](doc_images/w3DashPass.png)<br>
+![Validator Login Pass](doc_images/w3LoginPass.png)<br>
 
 
 
@@ -900,17 +900,17 @@ FIX:
 This CSS validation initially failed due to the use of obsolete properties:
 -webkit-font-smoothing: antialiased; and interpolate-size: allow-keywords;.
 After removing these deprecated properties, all CSS tests passed successfully.
-![Jigsaw Pass](doc_images/JigsawPass.png)
-![Jigsaw Dashboard Pass](doc_images/JigsawDahPass.png)
+![Jigsaw Pass](doc_images/JigsawPass.png)<br>
+![Jigsaw Dashboard Pass](doc_images/JigsawDahPass.png)<br>
 
 
 ## JS Lint
 
 | File Tested                | Expected Result              | Status |
 | -------------------------- | ---------------------------- | ------ |
-| home_search.js            | No syntax errors o4 warnings | ✅ Pass |
-| Base_header.js                | No syntax errors or warnings | ✅ Pass |
-| notifications.js | No syntax errors 2 warnings | ✅ Pass |
+| `home_search.js`            | No syntax errors o4 warnings | ✅ Pass |
+| `Base_header.js`                | No syntax errors or warnings | ✅ Pass |
+| `notifications.js` | No syntax errors 2 warnings | ✅ Pass |
 
 ⚠️  Warnings can be ignored as its about Const is only available in ES6 onwards.
 
@@ -924,9 +924,9 @@ Missing semicolons
 Undefined variables
 Deprecated or obsolete syntax
 
-![Base JS](doc_images/homejs.png)
-![Search JS](doc_images/basejs.png)
-![Notifications JS](doc_images/JigsawDahPass.png)
+![Base JS](doc_images/homejs.png)<br>
+![Search JS](doc_images/basejs.png)<br>
+![Notifications JS](doc_images/JigsawDahPass.png)<br>
 
 
 
@@ -1003,12 +1003,12 @@ Since this does not impact accessibility or usability, and WAVE classifies it as
 After applying all fixes, WAVE reports zero accessibility errors.
 The application now fully complies with WCAG 2.1 Level AA standards.
 
-![Warning Ignored](doc_images/waveLinkIgnored.png)
-![Wave JS Fail](doc_images/WaveJsFail.png)
-![WaveHeadings Fail](doc_images/headingsWaveFail.png)
-![Wave Aria Fail](doc_images/RegisterWaveFail.png)
-![Wave Home Page Pass](doc_images/wavepasshome.png)
-![Wave Add Item Pass](doc_images/waveAddItemPass.png)
-![Wave Signup Pass](doc_images/signupWavePass.png)
+![Warning Ignored](doc_images/waveLinkIgnored.png)<br>
+![Wave JS Fail](doc_images/WaveJsFail.png)<br>
+![WaveHeadings Fail](doc_images/headingsWaveFail.png)<br>
+![Wave Aria Fail](doc_images/RegisterWaveFail.png)<br>
+![Wave Home Page Pass](doc_images/wavepasshome.png)<br>
+![Wave Add Item Pass](doc_images/waveAddItemPass.png)<br>
+![Wave Signup Pass](doc_images/signupWavePass.png)<br>
 
 

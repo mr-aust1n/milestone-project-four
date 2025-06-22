@@ -469,7 +469,7 @@ Order
 - As a user, I want to securely purchase items using Stripe.
 - As a user, I want to view my own purchased orders and order history.
 - As a user, I want to communicate with sellers by sending messages about items.
-- As a user, I want to leave reviews after purchasing an item.
+- As a user, I do not want to see sold items 
 
 ###  Sellers
 
@@ -647,7 +647,7 @@ Auto remove the product from the home screen once a product is sold and not to w
 
 Add sold items to the 'my orders' page under sold items.
 
-Reply to messages
+
 
 
 ## Known Issues

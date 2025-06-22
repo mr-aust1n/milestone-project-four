@@ -22,7 +22,9 @@ from dotenv import load_dotenv
 load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-DEBUG = True
+# SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG = True
+DEBUG = "DEVELOPMENT" in os.environ
 
 SECRET_KEY = "django-insecure-w4^x!95$9tw4upegxaih!!e7nj+!yxtimde5(47#q3=gcjnkke"
 
@@ -42,9 +44,6 @@ DATABASES = {"default": dj_database_url.parse(DATABASE_URL, conn_max_age=600)}
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-insecure-w4^x!95$9tw4upegxaih!!e7nj+!yxtimde5(47#q3=gcjnkke"
 
-# SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = "DEVELOPMENT" in os.environ
-DEBUG = True
 
 # Application definition
 
