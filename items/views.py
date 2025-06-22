@@ -28,15 +28,8 @@ def home(request):
     elif sort == "title_desc":
         items = items.order_by("-title")
 
-    # Build your categories list as you're already doing:
-    categories = Item.CATEGORY_CHOICES  # or however you're generating it
+    categories = Item.CATEGORY_CHOICES
 
-    context = {
-        "items": items,
-        "categories": categories,
-        "selected_category": category,
-        "selected_sort": sort,
-    }
     return render(
         request,
         "items/home.html",
@@ -60,7 +53,7 @@ def add_item(request):
 
 def item_detail(request, item_id):
     item = get_object_or_404(Item, pk=item_id)
-    messages = item.messages.select_related("sender")
+    messages_list = item.messages.select_related("sender")
 
     if request.method == "POST":
         form = MessageForm(request.POST)
@@ -68,10 +61,9 @@ def item_detail(request, item_id):
             message = form.save(commit=False)
             message.item = item
             message.sender = request.user
-            message.receiver = item.seller  # ✅ Add this line
+            message.receiver = item.seller
             message.save()
 
-            # ✅ Email alert to seller
             send_mail(
                 subject=f"New message about your item: {item.title}",
                 message=(
@@ -91,40 +83,7 @@ def item_detail(request, item_id):
     return render(
         request,
         "items/item_detail.html",
-        {"item": item, "form": form, "messages": messages},
-    )
-    item = get_object_or_404(Item, pk=item_id)
-    messages = item.messages.select_related("sender")
-
-    if request.method == "POST":
-        form = MessageForm(request.POST)
-        if form.is_valid():
-            message = form.save(commit=False)
-            message.item = item
-            message.sender = request.user
-            message.save()
-
-            #  Email alert to seller
-            send_mail(
-                subject=f"New message about your item: {item.title}",
-                message=(
-                    f"You've received a new message from {request.user.username}:\n\n"
-                    f"{message.message}\n\n"
-                    f"View the item here: http://127.0.0.1:8000/{item.id}/"
-                ),
-                from_email=settings.DEFAULT_FROM_EMAIL,
-                recipient_list=[item.seller.email],
-                fail_silently=True,
-            )
-
-            return redirect("item_detail", item_id=item.id)
-    else:
-        form = MessageForm()
-
-    return render(
-        request,
-        "items/item_detail.html",
-        {"item": item, "form": form, "messages": messages},
+        {"item": item, "form": form, "messages": messages_list},
     )
 
 
@@ -135,7 +94,6 @@ def edit_item(request, item_id):
     if request.method == "POST":
         form = ItemForm(request.POST, request.FILES, instance=item)
         if form.is_valid():
-            # Check if a new image was uploaded
             if not request.FILES.get("image"):
                 form.instance.image = item.image  # retain existing image
 
@@ -166,14 +124,14 @@ def dashboard(request):
     offers = Order.objects.filter(item__in=my_items, is_offer=True).select_related(
         "item", "buyer"
     )
-    messages = Message.objects.filter(item__seller=request.user).select_related(
-        "item", "sender"
-    )
+    messages_list = Message.objects.filter(
+        item__seller=request.user, dismissed_by_seller=False
+    ).select_related("item", "sender")
 
     return render(
         request,
         "items/dashboard.html",
-        {"my_items": my_items, "offers": offers, "messages": messages},
+        {"my_items": my_items, "offers": offers, "messages": messages_list},
     )
 
 
@@ -181,7 +139,6 @@ def dashboard(request):
 def reply_to_message(request, message_id):
     original_message = get_object_or_404(Message, id=message_id)
 
-    # Only the item seller can reply
     if original_message.item.seller != request.user:
         return redirect("dashboard")
 
@@ -203,3 +160,19 @@ def reply_to_message(request, message_id):
         "items/reply_message.html",
         {"form": form, "original": original_message},
     )
+
+
+@login_required
+def dismiss_message(request, message_id):
+    message = get_object_or_404(Message, id=message_id)
+
+    if message.item.seller != request.user:
+        messages.error(request, "You do not have permission to dismiss this message.")
+        return redirect("dashboard")
+
+    if request.method == "POST":
+        message.dismissed_by_seller = True
+        message.save()
+        messages.success(request, "Message dismissed from your dashboard.")
+
+    return redirect("dashboard")

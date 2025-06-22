@@ -22,9 +22,10 @@ from dotenv import load_dotenv
 load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+DEBUG = True
 
 SECRET_KEY = "django-insecure-w4^x!95$9tw4upegxaih!!e7nj+!yxtimde5(47#q3=gcjnkke"
-DEBUG = "DEVELOPMENT" in os.environ
+
 
 # ✅ Move DATABASE_URL fix ABOVE DATABASES config:
 DATABASE_URL = os.environ.get("DATABASE_URL")
@@ -42,8 +43,8 @@ DATABASES = {"default": dj_database_url.parse(DATABASE_URL, conn_max_age=600)}
 SECRET_KEY = "django-insecure-w4^x!95$9tw4upegxaih!!e7nj+!yxtimde5(47#q3=gcjnkke"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = "DEVELOPMENT" in os.environ
-
+# DEBUG = "DEVELOPMENT" in os.environ
+DEBUG = True
 
 # Application definition
 

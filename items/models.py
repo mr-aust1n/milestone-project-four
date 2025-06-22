@@ -44,10 +44,12 @@ class Message(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name="received_messages",
-        null=True,  # temporarily allow null to avoid migration conflict
+        null=True,
     )
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
+
+    dismissed_by_seller = models.BooleanField(default=False)
 
     class Meta:
         ordering = ["-created_at"]

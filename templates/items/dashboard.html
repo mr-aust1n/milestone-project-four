@@ -15,7 +15,6 @@
         <div class="item-image-wrapper">
             {% if item.image %}
             <img src="{{ item.secure_image_url }}" alt="{{ item.title }}">
-
             {% endif %}
         </div>
         <div class="item-info">
@@ -24,6 +23,7 @@
             <p>Available: {{ item.quantity }}</p>
             <p>{{ item.description|truncatewords:20 }}</p>
             <div class="item-actions">
+                <a href="{% url 'item_detail' item.id %}">View</a> |
                 <a href="{% url 'edit_item' item.id %}">Edit</a> |
                 <a href="{% url 'delete_item' item.id %}">Delete</a>
             </div>
@@ -34,7 +34,6 @@
 {% else %}
 <p>You haven't listed any items yet.</p>
 {% endif %}
-
 
 <hr>
 
@@ -70,18 +69,24 @@
 
 <h3>Messages Received</h3>
 {% if messages %}
-<ul class="message-list">
+<div class="dashboard-grid">
     {% for msg in messages %}
-    <li>
-        <strong>{{ msg.sender.username }}</strong> →
-        <a href="{% url 'item_detail' msg.item.id %}">{{ msg.item.title }}</a><br>
-        <em>{{ msg.created_at|date:"M d, Y H:i" }}</em><br>
-        {{ msg.message }}
-    </li>
+    <div class="message-card" role="region" aria-label="Message from {{ msg.sender.username }}">
+        <div class="message-header">
+            <strong>{{ msg.sender.username }}</strong> →
+            <a href="{% url 'item_detail' msg.item.id %}">{{ msg.item.title }}</a>
+        </div>
+        <p class="message-meta">{{ msg.created_at|date:"M d, Y H:i" }}</p>
+        <p class="message-body">{{ msg.message }}</p>
+        <form action="{% url 'dismiss_message' msg.id %}" method="post" style="margin-top: 10px;">
+            {% csrf_token %}
+            <button type="submit" aria-label="Dismiss message from {{ msg.sender.username }}">Dismiss</button>
+        </form>
+    </div>
     {% endfor %}
-</ul>
+</div>
+
 {% else %}
 <p>No messages received yet.</p>
 {% endif %}
-
 {% endblock %}
