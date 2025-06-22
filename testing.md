@@ -56,6 +56,9 @@ Where failures occurred during development, they are documented along with fixes
 | Validation Tests     | Full            | Pass   | 0      |
 | Deployment Tests     | Full            | Pass   | 0      |
 
+
+![Base JS](doc_images/homejs.png)<br>
+
 ---
 
 ## Testing Approach
@@ -82,6 +85,8 @@ Where failures occurred during development, they are documented along with fixes
 | Test invalid ID | 404 page displayed | Pass |
 | Confirm correct item data | Title, price, image correct | Pass |
 
+![404](doc_images/404.png)<br>
+
 ### Edit Item Functionality
 
 | Test Case | Expected Result | Status |
@@ -92,6 +97,8 @@ Where failures occurred during development, they are documented along with fixes
 | Submit valid edits | Changes saved | Pass |
 | Submit invalid edits | Errors shown | Pass |
 | Unauthorized edit access | 404 page shown | Pass |
+
+![Dashboard when logged out](doc_images/dashboardLogin.png)<br>
 
 ### User Registration
 
@@ -107,6 +114,10 @@ Where failures occurred during development, they are documented along with fixes
 | Reuse activation link | Gracefully handled | Pass |
 | Email stored in database | Correct email stored | Pass |
 
+![Email Confirm ](doc_images/EmailConfirmation.png)<br>
+![Email Confirm ](doc_images/CheckEmail.png)<br>
+
+
 ### User Dashboard
 
 | Test Case | Expected Result | Status |
@@ -116,6 +127,9 @@ Where failures occurred during development, they are documented along with fixes
 | Edit/Delete links | Links functional | Pass |
 | No image item display | No broken icons | Pass |
 | User with no items | "No items" message shown | Pass |
+
+
+![User Dashboard ](doc_images/dashboardLoggedin.png)<br>
 
 ### Environment File Tests
 
@@ -134,6 +148,8 @@ Where failures occurred during development, they are documented along with fixes
 | Offer saved in DB | Offer correctly stored | Pass |
 | Offer blocked on sold item | Action blocked | Pass |
 
+![Offer Received ](doc_images/offerRecived.png)<br>
+
 ### Offers Management
 
 | Test Case | Expected Result | Status |
@@ -143,6 +159,12 @@ Where failures occurred during development, they are documented along with fixes
 | Accept/Reject buttons | Work correctly | Pass |
 | Post-decision state | Buttons hidden | Pass |
 | Only seller can respond | Permissions correct | Pass |
+
+![Offer Reject](doc_images/offerRecived.png)<br>
+![Offer sent](doc_images/offerSent.png)<br>
+![Offer Received](doc_images/OfferReceived.png)<br>
+![Offer Accepted](doc_images/accepted.png)<br>
+
 
 ### Search Functionality
 
@@ -158,6 +180,10 @@ Where failures occurred during development, they are documented along with fixes
 | Layout stable | Styling not broken | Pass |
 | JS disabled | Full list still loads | Pass |
 
+![Search Case Sensitive](doc_images/search.png)<br>
+![Search](doc_images/search.png)<br>
+
+
 ### Messaging Feature
 
 | Test Case | Expected Result | Status |
@@ -167,6 +193,9 @@ Where failures occurred during development, they are documented along with fixes
 | Buyer messages seller | Message saved & email sent | Pass |
 | Empty message | Validation error | Pass |
 | Multiple users | Correct display | Pass |
+
+![Messages](doc_images/messages.png)<br>
+
 
 ### Password Reset
 
@@ -182,6 +211,9 @@ Where failures occurred during development, they are documented along with fixes
 | Reuse reset link | Invalid link error | Pass |
 | Accessibility | Fully accessible | Pass |
 
+
+![Reset](doc_images/PasswordComplete.png)<br>
+![Reset](doc_images/PasswordEmail.png)<br>
 ---
 
 ## Automated Unit Testing
