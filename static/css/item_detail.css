@@ -79,6 +79,10 @@ form button[type="submit"] {
     margin: 20px 0px;
 }
 
+img {
+    max-height: 500px;
+}
+
 /* Mobile First - Responsive */
 
 @media (min-width: 768px) {
