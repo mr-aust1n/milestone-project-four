@@ -59,6 +59,7 @@ ReLuvd — Vinted-Style Django E-Commerce Marketplace
 
 ReLuvd is a full-stack Django web application that allows users to buy and sell second-hand items, similar to platforms like Vinted. The platform supports secure user registration, product listings, image uploads via Cloudinary, Stripe payments, full CRUD functionality, and an administrative backend.
 
+![Homepage](doc_images/homepageGuest.png)
 
 ### Purpose and Value
 
@@ -107,6 +108,7 @@ Full manual & automated testing suite
 
 Fully seeded database for demo
 
+![Dashboard](doc_images/dashboardLoggedin.png)
 
 - Technologies Used
 
@@ -201,16 +203,22 @@ No real payments are processed.
 
 Use Stripe test card number: 4242 4242 4242 4242 for test payments.
 
+![Stripe](doc_images/paymentSuccess.png)
+
 see [TESTING.md](TESTING.md) for more info.
 
 ## Security
 
 The following security measures have been implemented to ensure application integrity, user safety, and data protection:
 
+
+
 - **Environment Variable Management:**
   - All sensitive configuration values (e.g., `SECRET_KEY`, `STRIPE_API_KEYS`, `CLOUDINARY_API_KEYS`, email credentials) are handled securely using environment variables.
   - A local `.env` file is used during development (loaded via `python-dotenv`) but excluded from version control via `.gitignore` to prevent credential leaks.
   - On deployment, all secrets are managed securely through Heroku Config Vars, ensuring no credentials are exposed in the codebase or repository.
+
+  ![Gitignore](doc_images/gitignore.png)
 
 - **Django Secret Key Protection:**
   - The `SECRET_KEY` is never hardcoded or committed.
@@ -486,11 +494,13 @@ Order
 - As a user, I want to ensure that I can only edit or delete my own items.
 - As a user, I want to feel confident that my data is secure, and no sensitive card details are stored on the platform.
 - As an admin, I want to access the Django admin panel to manage users, items, orders, and reviews.
+See all test results here [TESTING.md](TESTING.md) 
 
 ### Accessibility
 
 - As a mobile user, I want the site to be fully responsive and easy to navigate.
 - As a visually impaired user, I want the site to be fully accessible and compatible with screen readers.
+See all test results here [TESTING.md](TESTING.md) 
 
 
 
@@ -519,6 +529,8 @@ See all test results here [TESTING.md](TESTING.md)
 Trainers, Leather Bag, Sunglasses, Hot Air Balloon, Watch, Cat, Deer, Steering Wheel, Spices.
 
 All data generated via python manage.py seed_database
+
+![Seeded Products](doc_images/seeded.png)
 
 
 
@@ -556,8 +568,6 @@ Favourites / Watchlist feature
 Category expansion
 
 Admin analytics dashboard
-
-Deployment upgrade to Render
 
 Visual improvements to HTML Email templates
 
