@@ -14,7 +14,7 @@ def home(request):
     category = request.GET.get("category")
     sort = request.GET.get("sort")
 
-    items = Item.objects.all()
+    items = Item.objects.filter(is_sold=False)
 
     if category:
         items = items.filter(category=category)
