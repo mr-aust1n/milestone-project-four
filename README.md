@@ -506,7 +506,7 @@ Accessibility tests via Lighthouse (score 90+)
 
 W3C HTML & CSS validated
 
-See all test results here ![Testing](TESTING.md) 
+See all test results here [TESTING.md](TESTING.md) 
 
 
 
