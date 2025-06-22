@@ -10,4 +10,9 @@ urlpatterns = [
     path("<int:item_id>/edit/", views.edit_item, name="edit_item"),
     path("<int:item_id>/delete/", views.delete_item, name="delete_item"),
     path("dashboard/", views.dashboard, name="dashboard"),
+    path(
+        "message/<int:message_id>/reply/",
+        views.reply_to_message,
+        name="reply_to_message",
+    ),
 ]
