@@ -230,6 +230,7 @@ Where failures occurred during development, they are documented along with fixes
 | Email confirmation | Sent after purchase | Pass |
 | HTTPS enforced | Secure throughout | Pass |
 
+
 ---
 
 ## Accessibility Testing
@@ -1012,3 +1013,4 @@ The application now fully complies with WCAG 2.1 Level AA standards.
 ![Wave Signup Pass](doc_images/signupWavePass.png)<br>
 
 
+BACK TO READ ME [README](README.md)

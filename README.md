@@ -201,6 +201,8 @@ No real payments are processed.
 
 Use Stripe test card number: 4242 4242 4242 4242 for test payments.
 
+see [TESTING.md](TESTING.md) for more info.
+
 ## Security
 
 The following security measures have been implemented to ensure application integrity, user safety, and data protection:
@@ -543,89 +545,7 @@ CSS reset - https://meyerweb.com/eric/tools/css/reset/
 
 The project follows Django’s recommended modular app structure:
 
-
-milestone-project-four/
-│
-├── accounts/ # Custom user accounts app
-│ ├── admin.py
-│ ├── apps.py
-│ ├── forms.py
-│ ├── models.py
-│ ├── tests_forms.py
-│ ├── tests_models.py
-│ ├── tests_views.py
-│ ├── tests_permissions.py
-│ ├── test_admin_permissions.py
-│ ├── test_urls.py
-│ ├── urls.py
-│ └── views.py
-│
-├── checkout/ # Stripe payment app
-│ ├── admin.py
-│ ├── apps.py
-│ ├── forms.py
-│ ├── models.py
-│ ├── tests_forms.py
-│ ├── tests_models.py
-│ ├── tests_views.py
-│ └── views.py
-│
-├── items/ # Item listings and messaging app
-│ ├── admin.py
-│ ├── apps.py
-│ ├── forms.py
-│ ├── models.py
-│ ├── tests_forms.py
-│ ├── tests_models.py
-│ ├── tests_views.py
-│ ├── management/
-│ │ └── commands/
-│ │ └── seed_database.py # Seeder script
-│ └── views.py
-│
-├── orders/ # Orders management app
-│ ├── admin.py
-│ ├── apps.py
-│ ├── models.py
-│ ├── tests_models.py
-│ ├── tests_views.py
-│ └── views.py
-│
-├── reviews/ # Reviews app
-│ ├── admin.py
-│ ├── apps.py
-│ ├── models.py
-│ ├── tests_models.py
-│ └── tests_views.py
-│
-├── reluvd/ # Main Django project config
-│ ├── init.py
-│ ├── asgi.py
-│ ├── settings.py
-│ ├── urls.py
-│ └── wsgi.py
-│
-├── templates/ # HTML templates
-│ ├── base.html
-│ ├── 404.html
-│ ├── items/
-│ ├── accounts/
-│ ├── checkout/
-│ └── reviews/
-│
-├── static/ # Static files (CSS, JS, favicon)
-│ ├── css/
-│ ├── js/
-│ └── images/
-│
-├── media/ (local only) # Uploaded media files (used locally, Cloudinary in production)
-│
-├── Procfile # Heroku process file
-├── requirements.txt # Python dependencies
-├── runtime.txt # Python version for Heroku
-├── .env (excluded) # Environment variables (local only)
-├── README.md
-└── TESTING.md
+![File Structure ](doc_images/fileLayout.png)
 
 
 ### Future Improvements
